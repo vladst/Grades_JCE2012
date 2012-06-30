@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  teacher_id: 1
+  name: MyString
+  subject: MyString
+  gclass: MyString
+  password: MyString
+  group: 1
+
+two:
+  teacher_id: 1
+  name: MyString
+  subject: MyString
+  gclass: MyString
+  password: MyString
+  group: 1

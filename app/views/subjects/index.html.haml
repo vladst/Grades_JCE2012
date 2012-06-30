@@ -1,0 +1,19 @@
+%h1 Listing subjects
+
+%table
+  %tr
+    %th Subject
+    %th
+    %th
+    %th
+
+  - @subjects.each do |subject|
+    %tr
+      %td= subject.subject
+      %td= link_to 'Show', subject
+      %td= link_to 'Edit', edit_subject_path(subject)
+      %td= link_to 'Destroy', subject, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Subject', new_subject_path

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  manager_id: 1
+  name: MyString
+  password: MyString
+  deadline: 2012-06-29 10:03:00
+  group: 1
+
+two:
+  manager_id: 1
+  name: MyString
+  password: MyString
+  deadline: 2012-06-29 10:03:00
+  group: 1

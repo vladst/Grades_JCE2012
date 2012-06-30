@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Gclass:
+  = @gclass.gclass
+
+= link_to 'Edit', edit_gclass_path(@gclass)
+\|
+= link_to 'Back', gclasses_path

@@ -1,0 +1,10 @@
+%form
+  %fieldset
+    %select
+      - @possible_classes.each do |elem|
+        %option #{elem}
+
+    %select
+      - @possible_subjects.each do |elem|
+        %option #{elem}  
+    %input{:type => "submit", :class=>"button", :value=>"Next"} 

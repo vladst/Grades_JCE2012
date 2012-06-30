@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  student_id: 1
+  name: MyString
+  subject: MyString
+  gclass: MyString
+  grade: 1
+  note: MyString
+
+two:
+  student_id: 1
+  name: MyString
+  subject: MyString
+  gclass: MyString
+  grade: 1
+  note: MyString

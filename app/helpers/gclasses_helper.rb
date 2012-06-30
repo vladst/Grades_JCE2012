@@ -1,0 +1,2 @@
+module GclassesHelper
+end

@@ -1,0 +1,12 @@
+%h1 Hello #{@teacher_name}
+%h2 Choose class you want to edit grades
+%table
+  %thead
+    %tr
+      %th Class
+  %tbody
+  -@possible_classes.each do |cl|
+    %tr
+    %td
+      =link_to "#{cl.subject} at class #{cl.gclass}", students_path(:subject=>cl.subject, :gclass=>cl.gclass)
+    

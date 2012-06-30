@@ -1,0 +1,17 @@
+.field
+  %td= f.number_field :student_id
+.field
+  -#= f.label :name
+  %td= f.text_field :name
+.field
+  -#= f.label :subject
+  %td= f.text_field :subject
+.field
+  -#= f.label :gclass
+  %td= f.text_field :gclass , size='10'
+.field
+  -#= f.label :grade
+  %td= f.number_field :grade
+.field
+  -#= f.label :note
+  %td= f.text_field :note
