@@ -5,20 +5,16 @@
 .row
   .offset3.span6
 
-    %form.form-horizontal
-      %fieldset
-        .control-group
-          %label.control-label Username
-          .controls
-            %input.input-xlarge{type: "text"}
-        .control-group
-          %label.control-label Password
-          .controls
-            %input.input-xlarge{type: "password"}
-
-        .form-actions
-          %button.btn.btn-primary Sign in
-          %button.btn Clean
+    =form_tag :auth, :method => "post" do
+      .fieldset
+        
+        =label_tag "Username"
+        =number_field_tag :user
+        
+        =label_tag "Password"
+        =password_field_tag :Password
+      .actions
+        =submit_tag "Login"
 
 
     %p

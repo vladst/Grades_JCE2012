@@ -1,17 +1,19 @@
 GradesJCE2012::Application.routes.draw do
   resources :gclasses
+  match 'auth', :to => 'login#auth'
   match 'update_individual', :to => 'students#update_individual'
+  match "teachers/:id/choose_classes", :to=>'teachers#choose_classes'
   resources :subjects
 
   resources :managers
 
   resources :teachers
 
-  resources :students, :collection => {:update_individual => :put}
+  resources :students
 
   root to: 'login#index'
   match "grades", :to => 'login#index'
-  match "teachers/:id/choose_classes", :to=>'teachers#choose_classes'
+ 
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

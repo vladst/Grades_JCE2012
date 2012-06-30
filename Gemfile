@@ -17,6 +17,7 @@ group :assets do
   gem 'therubyracer'
 end
 
+gem 'less-rails-bootstrap'
 gem 'haml-rails'
 gem 'jquery-rails'
 
