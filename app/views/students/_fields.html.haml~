@@ -1,14 +1,22 @@
 .field
-  %td= f.number_field :student_id
+  %td
+    =f.number_field :student_id, :disabled => 'disabled'
+    =f.hidden_field :student_id
 .field
-  -#= f.label :name
-  %td= f.text_field :name
+  %td
+    -#= f.label :name
+    =f.hidden_field :name
+    =f.text_field :name, :disabled => 'disabled'
 .field
-  -#= f.label :subject
-  %td= f.text_field :subject
+  %td
+    -#= f.label :subject
+    =f.text_field :subject, :disabled => 'disabled'
+    =f.hidden_field :subject
+  
 .field
   -#= f.label :gclass
-  %td= f.text_field :gclass , size='10'
+    =f.text_field :gclass, :disabled => 'disabled'
+    =f.hidden_field :gclass
 .field
   -#= f.label :grade
   %td= f.number_field :grade
