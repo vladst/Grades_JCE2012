@@ -1,25 +1,26 @@
 .field
   %td
-    =f.number_field :student_id, :disabled => 'disabled'
+    =f.number_field :student_id, :disabled => 'disabled', :style=>"width:100px"
     =f.hidden_field :student_id
 .field
   %td
     -#= f.label :name
     =f.hidden_field :name
-    =f.text_field :name, :disabled => 'disabled'
+    =f.text_field :name, :disabled => 'disabled', :style=>"width:150px"
 .field
   %td
     -#= f.label :subject
-    =f.text_field :subject, :disabled => 'disabled'
+    =f.text_field :subject, :disabled => 'disabled', :style=>"width:100px"
     =f.hidden_field :subject
   
 .field
-  -#= f.label :gclass
-    =f.text_field :gclass, :disabled => 'disabled'
+  %td
+    -#= f.label :gclass
+    =f.text_field :gclass, :disabled => 'disabled',:style=>"width:60px"
     =f.hidden_field :gclass
 .field
   -#= f.label :grade
-  %td= f.number_field :grade
+  %td= f.number_field :grade, :style=>"width:50px"
 .field
   -#= f.label :note
   %td= f.text_field :note
