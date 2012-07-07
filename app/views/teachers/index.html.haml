@@ -8,7 +8,7 @@
     %th Gclass
     %th Password
     %th Group
-    %th
+    %th Add class
     %th
     %th
 
@@ -23,6 +23,7 @@
       %td= link_to 'Show', teacher
       %td= link_to 'Edit', edit_teacher_path(teacher)
       %td= link_to 'Destroy', teacher, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Add Class', "teacher/#{teacher.teacher_id}/add_class"
 
 %br
 

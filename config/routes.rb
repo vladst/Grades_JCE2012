@@ -4,7 +4,7 @@ GradesJCE2012::Application.routes.draw do
   match 'update_individual', :to => 'students#update_individual'
   match "teachers/:id/choose_classes", :to=>'teachers#choose_classes'
   resources :subjects
-
+  get "teacher/:id/add_class", :to => 'teachers#add_class'
   resources :managers
 
   resources :teachers
