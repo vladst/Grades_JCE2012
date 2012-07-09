@@ -21,21 +21,21 @@
       <img src="./assets/0.4.5/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-07-09T08:38:53-07:00">2012-07-09T08:38:53-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-07-09T13:08:26-07:00">2012-07-09T13:08:26-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     All Files
-    (<span class="red">23.62%</span>)
+    (<span class="red">28.74%</span>)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>18</b> files in total.
     <b>254</b> relevant lines. 
-    <span class="green"><b>60</b> lines covered</span> and
-    <span class="red"><b>194</b> lines missed </span>
+    <span class="green"><b>73</b> lines covered</span> and
+    <span class="red"><b>181</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -70,11 +70,11 @@
       
       <tr>
         <td><a href="#bdcc25aa51ea4e47c604848166f5cab74ece62f5" class="src_link" title="./app/controllers/login_controller.rb">./app/controllers/login_controller.rb</a></td>
-        <td class="red">16.67 %</td>
+        <td class="yellow">88.89 %</td>
         <td>26</td>
         <td>18</td>
-        <td>3</td>
-        <td>15</td>
+        <td>16</td>
+        <td>2</td>
       </tr>
       
       <tr>
@@ -220,14 +220,14 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     Controllers
-    (<span class="red">20.16%</span>)
+    (<span class="red">25.51%</span>)
   </h2>
   <a name="Controllers"></a>
   <div>
     <b>7</b> files in total.
     <b>243</b> relevant lines. 
-    <span class="green"><b>49</b> lines covered</span> and
-    <span class="red"><b>194</b> lines missed </span>
+    <span class="green"><b>62</b> lines covered</span> and
+    <span class="red"><b>181</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -262,11 +262,11 @@
       
       <tr>
         <td><a href="#bdcc25aa51ea4e47c604848166f5cab74ece62f5" class="src_link" title="./app/controllers/login_controller.rb">./app/controllers/login_controller.rb</a></td>
-        <td class="red">16.67 %</td>
+        <td class="yellow">88.89 %</td>
         <td>26</td>
         <td>18</td>
-        <td>3</td>
-        <td>15</td>
+        <td>16</td>
+        <td>2</td>
       </tr>
       
       <tr>
@@ -1700,7 +1700,7 @@
     <tr>
       <td colspan="3">
         <h3>./app/controllers/login_controller.rb</h3>
-        <h4><span class="red">16.67 %</span> covered</h4>
+        <h4><span class="yellow">88.89 %</span> covered</h4>
       </td>
     </tr>
     <tr>
@@ -1777,7 +1777,7 @@
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="2">
       <td class="line_number">
         <pre>6</pre>
       </td>
@@ -1785,12 +1785,12 @@
         <pre>    pass=params[:Password]</pre>
       </td>
       <td class="hits">
-        0
+        2
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="2">
       <td class="line_number">
         <pre>7</pre>
       </td>
@@ -1798,12 +1798,12 @@
         <pre>    id=params[:user]</pre>
       </td>
       <td class="hits">
-        0
+        2
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="2">
       <td class="line_number">
         <pre>8</pre>
       </td>
@@ -1811,12 +1811,12 @@
         <pre>    session[:id]=id</pre>
       </td>
       <td class="hits">
-        0
+        2
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="2">
       <td class="line_number">
         <pre>9</pre>
       </td>
@@ -1824,12 +1824,12 @@
         <pre>    teacherpassFromDB=Teacher.where(:teacher_id =&gt; id).first</pre>
       </td>
       <td class="hits">
-        0
+        2
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="2">
       <td class="line_number">
         <pre>10</pre>
       </td>
@@ -1837,12 +1837,12 @@
         <pre>    if !(teacherpassFromDB.nil?) &amp;&amp; teacherpassFromDB.password == pass</pre>
       </td>
       <td class="hits">
-        0
+        2
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>11</pre>
       </td>
@@ -1850,12 +1850,12 @@
         <pre>      session[:group]=teacherpassFromDB.group</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>12</pre>
       </td>
@@ -1863,12 +1863,12 @@
         <pre>      session[:manager]=false</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>13</pre>
       </td>
@@ -1876,7 +1876,7 @@
         <pre>      redirect_to &quot;/teachers/#{id}/choose_classes&quot;</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
@@ -1894,7 +1894,7 @@
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>15</pre>
       </td>
@@ -1902,12 +1902,12 @@
         <pre>      managerpassFromDB=Manager.where(:manager_id =&gt; id).first</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>16</pre>
       </td>
@@ -1915,12 +1915,12 @@
         <pre>      if !managerpassFromDB.nil? &amp;&amp; managerpassFromDB.password == pass</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>17</pre>
       </td>
@@ -1928,12 +1928,12 @@
         <pre>        session[:group]=managerpassFromDB.group</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>18</pre>
       </td>
@@ -1941,12 +1941,12 @@
         <pre>        session[:manager]=true</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>19</pre>
       </td>
@@ -1954,7 +1954,7 @@
         <pre>        redirect_to &quot;/managers/#{id}/choose_classes&quot;</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   

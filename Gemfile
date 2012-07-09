@@ -27,6 +27,7 @@ group :tests ,:development do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
+  gem "mongoid"
 
 end
 # Use unicorn as the web server
