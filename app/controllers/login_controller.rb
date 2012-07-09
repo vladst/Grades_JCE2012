@@ -16,7 +16,8 @@ class LoginController < ApplicationController
       if !managerpassFromDB.nil? && managerpassFromDB.password == pass
         session[:group]=managerpassFromDB.group
         session[:manager]=true
-        redirect_to "/managers/#{id}/choose_classes"
+        redirect_to "/managers/#{id}/options"
+        #redirect_to "/managers/#{id}/choose_classes"
       else
         flash[:notice] = "Pair of login and password not found"
         redirect_to "/"

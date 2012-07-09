@@ -1,4 +1,14 @@
 class GclassesController < ApplicationController
+  before_filter :require_login
+   
+  def require_login
+    if !session[:manager]
+      flash[:notice] = "You haven't permission to this action, please authorize as manager"
+      redirect_to "/"
+      return
+    end
+  end
+  
   # GET /gclasses
   # GET /gclasses.json
   def index

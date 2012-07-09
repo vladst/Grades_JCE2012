@@ -1,8 +1,17 @@
 GradesJCE2012::Application.routes.draw do
+  get "pages/home"
+
+  get "pages/contact"
+
   resources :gclasses
   match 'auth', :to => 'login#auth'
+  match 'gclasses_path', :to => 'gclasses#new'
+  match 'teachers_path', :to => 'teachers#new'
+  match 'subjects_path', :to => 'subjects#new'
+  match 'students_path', :to => 'students#new'
   match 'update_individual', :to => 'students#update_individual'
   match "teachers/:id/choose_classes", :to=>'teachers#choose_classes'
+  match "managers/:id/options", :to=>'managers#options'
   resources :subjects
   get "teacher/:id/add_class", :to => 'teachers#add_class'
   resources :managers
