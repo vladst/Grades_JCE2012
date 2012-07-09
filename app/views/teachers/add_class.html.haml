@@ -1,0 +1,28 @@
+%h1 Add teacher's class
+= form_for @teacher do |f|
+  -if @teacher.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@teacher.errors.count, "error")} prohibited this teacher from being saved:"
+      %ul
+        - @teacher.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.hidden_field :teacher_id
+  .field
+    = f.label :name
+    = f.hidden_field :name
+    = f.text_field :name, :disabled => 'disabled', :style=>"width:150px"
+  .field
+    =f.select(:subject, @possible_subjects)
+    -#= f.text_field :subject
+  .field
+    =f.select(:gclass, @possible_classes)
+    -#= f.text_field :gclass
+  .field
+    = f.hidden_field :password
+  .field
+    = f.hidden_field :group
+  .actions
+    = f.submit 'Add'
+
+= link_to 'Back', teachers_path
