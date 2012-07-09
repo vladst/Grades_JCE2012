@@ -6,8 +6,11 @@ gem 'rails', '3.1.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3', "~> 1.3.4"
-
-
+gem 'less-rails-bootstrap'
+gem 'haml-rails'
+gem 'jquery-rails'
+gem 'rspec-rails'
+gem 'simplecov'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -15,12 +18,17 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
   gem 'therubyracer'
+  
 end
+group :tests ,:development do
+ 
+  gem 'cucumber-rails'
+  gem 'cucumber-rails-training-wheels'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'launchy'
 
-gem 'less-rails-bootstrap'
-gem 'haml-rails'
-gem 'jquery-rails'
-
+end
 # Use unicorn as the web server
 # gem 'unicorn'
 
