@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629170330) do
+ActiveRecord::Schema.define(:version => 20120710161447) do
 
   create_table "gclasses", :force => true do |t|
     t.string   "gclass"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20120629170330) do
     t.integer  "group"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date_of_submission"
+    t.boolean  "submitted"
   end
 
 end

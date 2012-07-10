@@ -4,6 +4,8 @@
     %tr
       %th Student ID
       %th Name
+      %th Subject
+      %th Class
       %th Grade
       %th note
   = form_tag :update_individual, :method=> :put do
@@ -14,6 +16,8 @@
           %tr
           = render 'fields', :f => f
           %tr
-    =submit_tag "Submit"
+    Are you finished to set grades?
+    =check_box_tag id="submitted", checked=false
+    =submit_tag "Submit" , :id=>"submit"
 
 -#= link_to 'New Student', new_student_path
