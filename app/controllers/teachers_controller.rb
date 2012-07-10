@@ -88,7 +88,7 @@ class TeachersController < ApplicationController
       redirect_to "/"
       return
     end  
-    teacherID = session[:id]
+    teacherID = params[:id].nil? || params[:id].empty?? session[:id] : params[:id]
     @teacher_name = Teacher.select('name').where(:teacher_id => teacherID).first.name
     @possible_classes_submitted = Teacher.select('gclass, subject, date_of_submission').where(:teacher_id => teacherID).where(:submitted => true)
     @possible_classes_not_submitted = Teacher.select('gclass, subject').where(:teacher_id => teacherID).where(:submitted => false)

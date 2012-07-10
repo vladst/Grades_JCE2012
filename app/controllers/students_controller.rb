@@ -92,12 +92,16 @@ class StudentsController < ApplicationController
       redirect_to "/"
       return
     end
-    Teacher.where(:teacher_id => session[:id])
+    submitted = !params[:submitted].nil?
+    gclass = params[:students].values.first[:gclass]
+    subject = params[:students].values.first[:subject]
+    tea= Teacher.where(:teacher_id => session[:id]).where(:gclass => gclass).where(:subject=>subject).first.update_attributes!(:submitted=>!params[:submitted].nil?, :date_of_submission=>Date.current)
     @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }
     if @students.empty?
       flash[:notice] = "OK -UPDATED"
-      redirect_to students_path
+      redirect_to  '/teachers/choose_classes' #students_path :gclass=>gclass, :subject=>subject
     else
+      flash[:notice] = "NOT UPDATED"
       redirect_to teachers_path
     end
   end

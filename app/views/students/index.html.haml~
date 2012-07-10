@@ -17,7 +17,7 @@
           = render 'fields', :f => f
           %tr
     Are you finished to set grades?
-    =check_box_tag id="submitted", checked=false
+    =check_box_tag id="submitted", value=1, params[:submitted]
     =submit_tag "Submit" , :id=>"submit"
 
 -#= link_to 'New Student', new_student_path
