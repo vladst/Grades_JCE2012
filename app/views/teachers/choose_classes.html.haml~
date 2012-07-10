@@ -1,12 +1,28 @@
 %h1 Hello #{@teacher_name}
-%h2 Choose class you want to edit grades
+%h2 Your deadline is #{@deadline}
+%h3 Choose class you want to edit grades
+
 %table
   %thead
     %tr
-      %th Class
+      %th Classes which you not submit grades
   %tbody
-  -@possible_classes.each do |cl|
+  -@possible_classes_not_submitted.each do |cl|
     %tr
     %td
       =link_to "#{cl.subject} at class #{cl.gclass}", students_path(:subject=>cl.subject, :gclass=>cl.gclass)
+
+%table
+  %thead
+    %tr
+      %th Classes which you alredy submit grades
+      %th Date of submission
+  %tbody
+  -@possible_classes_submitted.each do |cl|
+    %tr
+    %td
+      =link_to "#{cl.subject} at class #{cl.gclass}", students_path(:subject=>cl.subject, :gclass=>cl.gclass)
+    %td
+      =cl.date_of_submission
+ 
     

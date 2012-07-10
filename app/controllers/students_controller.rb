@@ -92,7 +92,7 @@ class StudentsController < ApplicationController
       redirect_to "/"
       return
     end
-
+    Teacher.where(:teacher_id => session[:id])
     @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }
     if @students.empty?
       flash[:notice] = "OK -UPDATED"

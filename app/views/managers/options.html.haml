@@ -12,3 +12,31 @@
 =link_to("List of Subjects", :subjects, html_options = {})
 %br
 =link_to("List of Teachers", :teachers, html_options = {})
+%br
+
+= form_for @manager do |f|
+  -if @manager.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@manager.errors.count, "error")} prohibited this manager from being saved:"
+      %ul
+        - @manager.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label "Manager ID"
+    = f.hidden_field :manager_id
+    = f.number_field :manager_id, :disabled=>"disabled"
+  .field
+    = f.label :name
+    = f.hidden_field :name
+    = f.text_field :name, :disabled=>"disabled"
+  .field
+    = f.hidden_field :password 
+  .field
+    = f.label :deadline
+    = f.datetime_select :deadline
+  .field
+    = f.hidden_field :group
+
+  .actions
+    = f.submit 'Save'

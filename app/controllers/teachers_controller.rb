@@ -24,7 +24,7 @@ class TeachersController < ApplicationController
   # GET /teachers/new
   # GET /teachers/new.json
   def new
-    @teacher = Teacher.new(:group => session[:group])
+    @teacher = Teacher.new(:group => session[:group], :submitted=>0)
     @possible_subjects = Subject.all.map {|elem| elem.subject }
     @possible_classes = Gclass.all.map {|elem| elem.gclass}
   end
@@ -90,12 +90,14 @@ class TeachersController < ApplicationController
     end  
     teacherID = session[:id]
     @teacher_name = Teacher.select('name').where(:teacher_id => teacherID).first.name
-    @possible_classes = Teacher.select('gclass, subject').where(:teacher_id => teacherID)
+    @possible_classes_submitted = Teacher.select('gclass, subject, date_of_submission').where(:teacher_id => teacherID).where(:submitted => true)
+    @possible_classes_not_submitted = Teacher.select('gclass, subject').where(:teacher_id => teacherID).where(:submitted => false)
+    @deadline = Manager.select(:deadline).where(:group => session[:group]).first.deadline
   end
   
   def add_class
     teach = Teacher.where(:teacher_id => params[:id]).first
-    @teacher = Teacher.new(:teacher_id => teach.teacher_id, :group => session[:group], :name=> teach.name, :password=>teach.password)
+    @teacher = Teacher.new(:teacher_id => teach.teacher_id, :group => session[:group], :name=> teach.name, :password=>teach.password, :submitted=>0)
     flash[:notice] = teach.inspect
     @possible_subjects = Subject.all.map {|elem| elem.subject }
     @possible_classes = Gclass.all.map {|elem| elem.gclass}

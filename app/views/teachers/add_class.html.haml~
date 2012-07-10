@@ -1,4 +1,4 @@
-%h1 New teacher
+%h1 Add teacher's class
 = form_for @teacher do |f|
   -if @teacher.errors.any?
     #error_explanation
@@ -23,6 +23,6 @@
   .field
     = f.hidden_field :group
   .actions
-    = f.submit 'Save'
+    = f.submit 'Add'
 
 = link_to 'Back', teachers_path

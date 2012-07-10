@@ -1,5 +1,6 @@
 GradesJCE2012::Application.routes.draw do
   match 'login/logout', :to => 'login#logout'  
+  match 'update_deadline', :to => 'managers#update_deadline'
   match 'auth', :to => 'login#auth'
   match 'gclasses_path', :to => 'gclasses#new'
   match 'teachers_path', :to => 'teachers#new'
