@@ -11,6 +11,8 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'rspec-rails'
 gem 'simplecov'
+gem 'yaml_db'  #rake db:data:dump  ->   Dump contents of Rails database to db/data.yml
+#rake db:data:load   ->   Load contents of db/data.yml into the database
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

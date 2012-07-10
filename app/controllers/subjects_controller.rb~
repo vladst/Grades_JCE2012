@@ -3,18 +3,33 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     @subjects = Subject.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @subjects }
+    end
   end
 
   # GET /subjects/1
   # GET /subjects/1.json
   def show
     @subject = Subject.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @subject }
+    end
   end
 
   # GET /subjects/new
   # GET /subjects/new.json
   def new
     @subject = Subject.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @subject }
+    end
   end
 
   # GET /subjects/1/edit

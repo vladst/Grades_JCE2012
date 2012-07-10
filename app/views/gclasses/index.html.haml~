@@ -16,4 +16,4 @@
 
 %br
 
-= link_to 'New Class', new_gclass_path
+= link_to 'New Gclass', new_gclass_path

@@ -1,9 +1,5 @@
 GradesJCE2012::Application.routes.draw do
-  get "pages/home"
-
-  get "pages/contact"
-
-  resources :gclasses
+  match 'login/logout', :to => 'login#logout'  
   match 'auth', :to => 'login#auth'
   match 'gclasses_path', :to => 'gclasses#new'
   match 'teachers_path', :to => 'teachers#new'
@@ -11,17 +7,17 @@ GradesJCE2012::Application.routes.draw do
   match 'students_path', :to => 'students#new'
   match 'update_individual', :to => 'students#update_individual'
   match "teachers/:id/choose_classes", :to=>'teachers#choose_classes'
-  match "managers/:id/options", :to=>'managers#options'
-  resources :subjects
+  match "managers/options", :to=>'managers#options'
   get "teacher/:id/add_class", :to => 'teachers#add_class'
-  resources :managers
-
-  resources :teachers
-
-  resources :students
-
   root to: 'login#index'
   match "grades", :to => 'login#index'
+  resources :gclasses
+  resources :managers
+  resources :subjects
+  resources :teachers
+  resources :students
+
+
  
   
   # The priority is based upon order of creation:

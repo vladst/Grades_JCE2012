@@ -13,33 +13,18 @@ class GclassesController < ApplicationController
   # GET /gclasses.json
   def index
     @gclasses = Gclass.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @gclasses }
-    end
   end
 
   # GET /gclasses/1
   # GET /gclasses/1.json
   def show
     @gclass = Gclass.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @gclass }
-    end
   end
 
   # GET /gclasses/new
   # GET /gclasses/new.json
   def new
     @gclass = Gclass.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @gclass }
-    end
   end
 
   # GET /gclasses/1/edit

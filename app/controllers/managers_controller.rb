@@ -1,4 +1,14 @@
 class ManagersController < ApplicationController
+  
+  before_filter :require_login
+   
+  def require_login
+    unless session[:manager]
+      flash[:notice] = "You haven't permission to this action, please authorize as manager"
+      redirect_to "/"
+      return
+    end
+  end
   # GET /managers
   # GET /managers.json
   def setTime #"" setting time for Teacher submission!
@@ -6,11 +16,6 @@ class ManagersController < ApplicationController
   end
   
   def index
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
     @managers = Manager.all
 
     respond_to do |format|
@@ -22,11 +27,7 @@ class ManagersController < ApplicationController
   # GET /managers/1
   # GET /managers/1.json
   def show
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
+
     @manager = Manager.find(params[:id])
 
     respond_to do |format|
@@ -38,11 +39,7 @@ class ManagersController < ApplicationController
   # GET /managers/new
   # GET /managers/new.json
   def new
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
+
     @manager = Manager.new
 
     respond_to do |format|
@@ -59,11 +56,7 @@ class ManagersController < ApplicationController
   # POST /managers
   # POST /managers.json
   def create
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
+
     @manager = Manager.new(params[:manager])
 
     respond_to do |format|
@@ -80,11 +73,7 @@ class ManagersController < ApplicationController
   # PUT /managers/1
   # PUT /managers/1.json
   def update
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
+
     @manager = Manager.find(params[:id])
 
     respond_to do |format|
@@ -101,11 +90,7 @@ class ManagersController < ApplicationController
   # DELETE /managers/1
   # DELETE /managers/1.json
   def destroy
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
+
     @manager = Manager.find(params[:id])
     @manager.destroy
 
@@ -115,10 +100,5 @@ class ManagersController < ApplicationController
     end
   end
   def options
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
   end
 end

@@ -1,18 +1,28 @@
 class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
+  before_filter :require_login, :except => [:index, :update_individual]
+   
+  def require_login
+    if !session[:manager]
+      flash[:notice] = "You haven't permission to this action, please authorize as manager"
+      redirect_to "/"
+      return
+    end
+  end
   def index
-    #@students = Student.all
-    if params[:subject].nil? || params[:gclass].nil?
-      @students = Student.all
-      @main_form="",""
-    else  
-      @main_form="",""
+    if params[:subject].nil? && params[:gclass].nil? && session[:manager]
+      @students = Student.all 
+    elsif  params[:gclass].nil? && session[:manager]
+      @students = Student.where(:subject => params[:subject])
+    elsif params[:subject].nil? && session[:manager]
+      @students = Student.where(:gclass => params[:gclass])
+    elsif !session[:manager].nil?
       @students = Student.where(:subject => params[:subject], :gclass=>params[:gclass])
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @students }
-      end
+    else 
+      flash[:notice] = "You haven't permission to this action, please authorize as manager"
+      redirect_to "/"
+      return
     end
   end
 
@@ -20,11 +30,6 @@ class StudentsController < ApplicationController
   # GET /students/1.json
   def show
     @student = Student.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @student }
-    end
   end
 
   # GET /students/new
@@ -32,10 +37,6 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @possible_classes = Gclass.all.map {|elem| elem.gclass}
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @student }
-    end
   end
 
   # GET /students/1/edit
@@ -47,12 +48,12 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     gcl = params[:student][:gclass]
-    subjects = Student.select(:subject).where(:gclass=> gcl).group(:subject).map {|elem| elem.subject}
+    subjects = Teacher.select(:subject).where(:gclass=> gcl).group(:subject).map {|elem| elem.subject}
     #@student = Student.new(params[:student])
     subjects.each  do |subj|
       Student.create(:name => params[:student][:name], :student_id =>params[:student][:student_id] ,:subject =>subj,:gclass=>gcl)
     end
-    format.html { redirect_to students_path, notice: "Student was successfully created." }
+    redirect_to students_path, notice: "Student was successfully created."
   end
 
   # PUT /students/1
@@ -84,12 +85,14 @@ class StudentsController < ApplicationController
   end
   
   #################################################################################
-  def test
-    flash[:notice]=params.inspect
-    redirect_to teachers_path
-  end
   
   def update_individual
+    if session[:manager].nil?
+      flash[:notice] = "You haven't permission to this action, please authorize as manager/teacher"
+      redirect_to "/"
+      return
+    end
+
     @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }
     if @students.empty?
       flash[:notice] = "OK -UPDATED"

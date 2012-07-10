@@ -1,13 +1,14 @@
-=link_to("Add a Teacher", "/teachers_path", html_options = {})
+=link_to("Add a Teacher", new_teachers_path, html_options = {})
 %br
-=link_to("Add a Class", "/gclasses_path", html_options = {})
+=link_to("Add a Class", new_gclass_path, html_options = {})
 %br
-=link_to("Add a Subject", "/subjects_path", html_options = {})
+=link_to("Add a Subject", new_subjects_path, html_options = {})
 %br
-=link_to("Add a Student", "/students_path", html_options = {})
+=link_to("Add a Student", new_students_path, html_options = {})
 %br
-=link_to("List of Classes", "/students", html_options = {})
 %br
-=link_to("List of Subjects", "/students_path", html_options = {})
+=link_to("List of Classes", :gclasses, html_options = {})
 %br
-=link_to("List of Teachers", "/subjects_path", html_options = {})
+=link_to("List of Subjects", :subjects, html_options = {})
+%br
+=link_to("List of Teachers", :teachers, html_options = {})

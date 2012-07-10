@@ -1,73 +1,42 @@
 class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
-  def index
+  before_filter :require_login, :except => [:choose_classes]
+   
+  def require_login
     if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-   end
+      flash[:notice] = "You haven't permission to this action, please authorize as manager"
+      redirect_to "/"
+      return
+    end
+  end
+  def index
     group=session[:group]
     @teachers = Teacher.where(:group => group)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @teachers }
-    end
   end
 
   # GET /teachers/1
   # GET /teachers/1.json
   def show
-    if !session[:manager] or session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
     @teacher = Teacher.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @teacher }
-    end
   end
 
   # GET /teachers/new
   # GET /teachers/new.json
   def new
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
     @teacher = Teacher.new(:group => session[:group])
     @possible_subjects = Subject.all.map {|elem| elem.subject }
     @possible_classes = Gclass.all.map {|elem| elem.gclass}
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @teacher }
-    end
   end
 
   # GET /teachers/1/edit
   def edit
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
     @teacher = Teacher.find(params[:id])
   end
 
   # POST /teachers
   # POST /teachers.json
   def create
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
     @teacher = Teacher.new(params[:teacher])
     
     #gcl = params[:teacher][:gclass]
@@ -87,11 +56,6 @@ class TeachersController < ApplicationController
   # PUT /teachers/1
   # PUT /teachers/1.json
   def update
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
     @teacher = Teacher.find(params[:id])
 
     respond_to do |format|
@@ -108,11 +72,6 @@ class TeachersController < ApplicationController
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
-    if !session[:manager]
-     flash[:notice] = "You haven't permission to this action, please authorize as manager"
-     redirect_to "/"
-     return
-    end
     @teacher = Teacher.find(params[:id])
     @teacher.destroy
 
@@ -124,8 +83,12 @@ class TeachersController < ApplicationController
   
   #####################################
   def choose_classes
-      
-    teacherID = params[:id]
+    if session[:manager].nil?
+      flash[:notice] = "You haven't permission to this action, please authorize as teacher/manager"
+      redirect_to "/"
+      return
+    end  
+    teacherID = session[:id]
     @teacher_name = Teacher.select('name').where(:teacher_id => teacherID).first.name
     @possible_classes = Teacher.select('gclass, subject').where(:teacher_id => teacherID)
   end
@@ -133,6 +96,7 @@ class TeachersController < ApplicationController
   def add_class
     teach = Teacher.where(:teacher_id => params[:id]).first
     @teacher = Teacher.new(:teacher_id => teach.teacher_id, :group => session[:group], :name=> teach.name, :password=>teach.password)
+    flash[:notice] = teach.inspect
     @possible_subjects = Subject.all.map {|elem| elem.subject }
     @possible_classes = Gclass.all.map {|elem| elem.gclass}
   end
