@@ -85,6 +85,10 @@ class StudentsController < ApplicationController
   end
   
   #################################################################################
+  def report
+    flash[:notice]=params[:student_id]
+    
+  end
   
   def update_individual
     if session[:manager].nil?
@@ -99,7 +103,7 @@ class StudentsController < ApplicationController
     @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }
     if @students.empty?
       flash[:notice] = "OK -UPDATED"
-      redirect_to  '/teachers/#{session[:id]}/choose_classes' #students_path :gclass=>gclass, :subject=>subject
+      redirect_to  '/teachers/choose_classes' #students_path :gclass=>gclass, :subject=>subject
     else
       flash[:notice] = "NOT UPDATED"
       redirect_to teachers_path

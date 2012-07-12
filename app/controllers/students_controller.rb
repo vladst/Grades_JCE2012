@@ -85,6 +85,10 @@ class StudentsController < ApplicationController
   end
   
   #################################################################################
+  def report
+    flash[:notice]=params[:student_id]
+    @report=Student.where(:student_id => params[:student_id])
+  end
   
   def update_individual
     if session[:manager].nil?
