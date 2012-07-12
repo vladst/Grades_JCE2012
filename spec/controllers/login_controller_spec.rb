@@ -7,20 +7,21 @@ describe LoginController do
       @pass.stub!(:password => '1234', :group=> 12)
     end
     it 'When I login	to teacher acount it should chek pass at db aind redirect' do
-      Teacher.stub_chain(:where, :first).and_return(@pass)
+      Teacher.stub_chain(:where, :where, :first).and_return(@pass)
       post :auth, {:user => 123, :Password=>'1234'}
       response.should redirect_to "/teachers/123/choose_classes"
     end
-    it 'When I login	to manager acount it should chek pass at db aind redirect' do
-      Manager.stub_chain(:where, :first).and_return(@pass)
+    it 'When I login	to manager acount it should chek pass at db and redirect to managers menu' do
+      Manager.stub_chain(:where, :where , :first).and_return(@pass)
       post :auth, {:user => 123, :Password=>'1234'}
       response.should redirect_to "/managers/options"
     end
     it 'When I try login with wrong pass/id it should redirect to root' do
-      Teacher.stub_chain(:where, :first).and_return(@pass)
-      Manager.stub_chain(:where, :first).and_return(@pass)
-      post :auth, {:user => 123, :Password=>'wrong password'}
-      response.should redirect_to "/"
+      @pass=nil
+      Teacher.stub_chain(:where, :where, :first).and_return(@pass)
+      Manager.stub_chain(:where, :where, :first).and_return(@pass)
+      post :auth, {:user => 1236, :Password=>'wrong password'}
+      response.should redirect_to root_path
     end
   end
   describe 'Logout from the system' do
