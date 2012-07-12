@@ -6,7 +6,7 @@ class TeachersController < ApplicationController
   def require_login
     if !session[:manager]
       flash[:notice] = "You haven't permission to this action, please authorize as manager"
-      redirect_to "/"
+      redirect_to root_path
       return
     end
   end
@@ -88,7 +88,7 @@ class TeachersController < ApplicationController
       redirect_to "/"
       return
     end  
-    teacherID = params[:id].nil? OR params[:id].empty?? session[:id] : params[:id]
+    teacherID = params[:id].nil? || params[:id].empty?? session[:id] : params[:id]
     @teacher_name = Teacher.select('name').where(:teacher_id => teacherID).first.name
     @possible_classes_submitted = Teacher.select('gclass, subject, date_of_submission').where(:teacher_id => teacherID).where(:submitted => true)
     @possible_classes_not_submitted = Teacher.select('gclass, subject').where(:teacher_id => teacherID).where(:submitted => false)

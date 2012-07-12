@@ -6,7 +6,7 @@ class TeachersController < ApplicationController
   def require_login
     if !session[:manager]
       flash[:notice] = "You haven't permission to this action, please authorize as manager"
-      redirect_to "/"
+      redirect_to root_path
       return
     end
   end
@@ -85,7 +85,7 @@ class TeachersController < ApplicationController
   def choose_classes
     if session[:manager].nil?
       flash[:notice] = "You haven't permission to this action, please authorize as teacher/manager"
-      redirect_to "/"
+      redirect_to root_path
       return
     end  
     teacherID = params[:id].nil? || params[:id].empty?? session[:id] : params[:id]
