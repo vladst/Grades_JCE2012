@@ -21,21 +21,21 @@
       <img src="./assets/0.4.5/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-07-12T09:18:24-07:00">2012-07-12T09:18:24-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-07-12T10:29:54-07:00">2012-07-12T10:29:54-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     All Files
-    (<span class="red">35.69%</span>)
+    (<span class="red">37.69%</span>)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>19</b> files in total.
-    <b>269</b> relevant lines. 
-    <span class="green"><b>96</b> lines covered</span> and
-    <span class="red"><b>173</b> lines missed </span>
+    <b>268</b> relevant lines. 
+    <span class="green"><b>101</b> lines covered</span> and
+    <span class="red"><b>167</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -106,11 +106,11 @@
       
       <tr>
         <td><a href="#95ebbf6b4720e9cd85fb56ea3c8303596084959c" class="src_link" title="./app/controllers/teachers_controller.rb">./app/controllers/teachers_controller.rb</a></td>
-        <td class="red">29.09 %</td>
-        <td>105</td>
-        <td>55</td>
-        <td>16</td>
-        <td>39</td>
+        <td class="red">38.89 %</td>
+        <td>104</td>
+        <td>54</td>
+        <td>21</td>
+        <td>33</td>
       </tr>
       
       <tr>
@@ -229,14 +229,14 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     Controllers
-    (<span class="red">32.68%</span>)
+    (<span class="red">34.77%</span>)
   </h2>
   <a name="Controllers"></a>
   <div>
     <b>7</b> files in total.
-    <b>257</b> relevant lines. 
-    <span class="green"><b>84</b> lines covered</span> and
-    <span class="red"><b>173</b> lines missed </span>
+    <b>256</b> relevant lines. 
+    <span class="green"><b>89</b> lines covered</span> and
+    <span class="red"><b>167</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -307,11 +307,11 @@
       
       <tr>
         <td><a href="#95ebbf6b4720e9cd85fb56ea3c8303596084959c" class="src_link" title="./app/controllers/teachers_controller.rb">./app/controllers/teachers_controller.rb</a></td>
-        <td class="red">29.09 %</td>
-        <td>105</td>
-        <td>55</td>
-        <td>16</td>
-        <td>39</td>
+        <td class="red">38.89 %</td>
+        <td>104</td>
+        <td>54</td>
+        <td>21</td>
+        <td>33</td>
       </tr>
       
     </tbody>
@@ -5884,7 +5884,7 @@
     <tr>
       <td colspan="3">
         <h3>./app/controllers/teachers_controller.rb</h3>
-        <h4><span class="red">29.09 %</span> covered</h4>
+        <h4><span class="red">38.89 %</span> covered</h4>
       </td>
     </tr>
     <tr>
@@ -7014,7 +7014,7 @@
     </tr>
   
     
-    <tr class="hit" data-hits="2">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>87</pre>
       </td>
@@ -7022,12 +7022,12 @@
         <pre>      flash[:notice] = &quot;You haven't permission to this action, please authorize as teacher/manager&quot;</pre>
       </td>
       <td class="hits">
-        2
+        1
       </td>
     </tr>
   
     
-    <tr class="hit" data-hits="2">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>88</pre>
       </td>
@@ -7035,12 +7035,12 @@
         <pre>      redirect_to root_path</pre>
       </td>
       <td class="hits">
-        2
+        1
       </td>
     </tr>
   
     
-    <tr class="hit" data-hits="2">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>89</pre>
       </td>
@@ -7048,7 +7048,7 @@
         <pre>      return</pre>
       </td>
       <td class="hits">
-        2
+        1
       </td>
     </tr>
   
@@ -7066,7 +7066,7 @@
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>91</pre>
       </td>
@@ -7074,12 +7074,12 @@
         <pre>    teacherID = params[:id].nil? || params[:id].empty?? session[:id] : params[:id]</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>92</pre>
       </td>
@@ -7087,12 +7087,12 @@
         <pre>    @teacher_name = Teacher.select('name').where(:teacher_id =&gt; teacherID).first.name</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>93</pre>
       </td>
@@ -7100,12 +7100,12 @@
         <pre>    @possible_classes_submitted = Teacher.select('gclass, subject, date_of_submission').where(:teacher_id =&gt; teacherID).where(:submitted =&gt; true)</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>94</pre>
       </td>
@@ -7113,12 +7113,12 @@
         <pre>    @possible_classes_not_submitted = Teacher.select('gclass, subject').where(:teacher_id =&gt; teacherID).where(:submitted =&gt; false)</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>95</pre>
       </td>
@@ -7126,7 +7126,7 @@
         <pre>    @deadline = Manager.select(:deadline).where(:group =&gt; session[:group]).first.deadline</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
@@ -7201,7 +7201,7 @@
         <pre>101</pre>
       </td>
       <td>
-        <pre>    flash[:notice] = teach.inspect</pre>
+        <pre>    @possible_subjects = Subject.all.map {|elem| elem.subject }</pre>
       </td>
       <td class="hits">
         0
@@ -7214,19 +7214,6 @@
         <pre>102</pre>
       </td>
       <td>
-        <pre>    @possible_subjects = Subject.all.map {|elem| elem.subject }</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>103</pre>
-      </td>
-      <td>
         <pre>    @possible_classes = Gclass.all.map {|elem| elem.gclass}</pre>
       </td>
       <td class="hits">
@@ -7237,7 +7224,7 @@
     
     <tr class="never" >
       <td class="line_number">
-        <pre>104</pre>
+        <pre>103</pre>
       </td>
       <td>
         <pre>  end</pre>
@@ -7250,7 +7237,7 @@
     
     <tr class="never" >
       <td class="line_number">
-        <pre>105</pre>
+        <pre>104</pre>
       </td>
       <td>
         <pre>end</pre>

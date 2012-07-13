@@ -98,7 +98,6 @@ class TeachersController < ApplicationController
   def add_class
     teach = Teacher.where(:teacher_id => params[:id]).first
     @teacher = Teacher.new(:teacher_id => teach.teacher_id, :group => session[:group], :name=> teach.name, :password=>teach.password, :submitted=>0)
-    flash[:notice] = teach.inspect
     @possible_subjects = Subject.all.map {|elem| elem.subject }
     @possible_classes = Gclass.all.map {|elem| elem.gclass}
   end

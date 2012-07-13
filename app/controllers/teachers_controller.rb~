@@ -83,11 +83,11 @@ class TeachersController < ApplicationController
   
   #####################################
   def choose_classes
-    if session[:manager].nil?
-      flash[:notice] = "You haven't permission to this action, please authorize as teacher/manager"
-      redirect_to "/"
-      return
-    end  
+    #if session[:manager].nil?
+    #  flash[:notice] = "You haven't permission to this action, please authorize as teacher/manager"
+    #  redirect_to root_path
+    #  return
+    #end  
     teacherID = params[:id].nil? || params[:id].empty?? session[:id] : params[:id]
     @teacher_name = Teacher.select('name').where(:teacher_id => teacherID).first.name
     @possible_classes_submitted = Teacher.select('gclass, subject, date_of_submission').where(:teacher_id => teacherID).where(:submitted => true)
@@ -98,7 +98,6 @@ class TeachersController < ApplicationController
   def add_class
     teach = Teacher.where(:teacher_id => params[:id]).first
     @teacher = Teacher.new(:teacher_id => teach.teacher_id, :group => session[:group], :name=> teach.name, :password=>teach.password, :submitted=>0)
-    flash[:notice] = teach.inspect
     @possible_subjects = Subject.all.map {|elem| elem.subject }
     @possible_classes = Gclass.all.map {|elem| elem.gclass}
   end
