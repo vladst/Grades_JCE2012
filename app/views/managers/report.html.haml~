@@ -1,0 +1,6 @@
+%table
+  %tbody
+    - @items.each do |row|
+      %tr
+        - row.each do |column|
+          %td= column

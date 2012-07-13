@@ -1,6 +1,6 @@
 %h1 Listing teachers
 
-%table
+%table 
   %tr
     %th Teacher ID
     %th Name
@@ -8,7 +8,7 @@
     %th Class
     %th Password
     %th Group
-    %th Add class
+    %th 
     %th
     %th
 
@@ -27,4 +27,4 @@
 
 %br
 
-= link_to 'New Teacher', new_teacher_path
+= link_to 'New Teacher', new_teacher_path 

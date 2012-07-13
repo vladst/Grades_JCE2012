@@ -1,4 +1,17 @@
+%label{:for => 'extension_name'} Grade report by student ID: <span class="hint"></span>
+
+%br
+=form_tag :grade_path, :method => "get" do
+  .fieldset
+    
+    =label_tag "Enter Student ID"
+    =number_field_tag :student_id
+  .actions
+    =submit_tag "Show Diplom"
+
+%br
 =link_to("Add a Teacher", new_teacher_path, html_options = {})
+
 %br
 =link_to("Add a Class", new_gclass_path, html_options = {})
 %br
