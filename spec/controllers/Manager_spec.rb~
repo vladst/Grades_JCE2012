@@ -1,0 +1,52 @@
+require 'spec_helper'
+
+describe ManagersController do
+  describe 'Manager options' do
+    # before(:each) do
+    #  @pass = mock('pass')
+    #  @pass.stub!(:password => '1234', :group=> 12)
+    #end
+    it 'When manager login it should be ridirected to Option page and get manager from DB' do
+      session[:manager]=true
+      session[:id]=123
+      @man=mock('ManagerM')
+      #@man.stub!(:name => "Ezra")
+      Manager.stub_chain(:where, :first).and_return(@man)
+      get 'options'
+      response.code.should eq("200")
+      #puts "******"
+      #puts controller.inspect
+      #@manager.name.should eq("E1zra")
+    end
+    
+    it "When manager updating the DeadLine it should be entered to manager DB" do
+      
+      session[:manager]=true
+      session[:id]=123
+      @man=mock(:manager_id => 123, :name => "Aksman", :password =>"123", :deadline=> "2012-10-17 15:24:00", :group=> 1, :created_at=> "2012-07-10 18:03:34", :updated_at=> "2012-07-17 16:52:48")
+      Manager.stub(:find).and_return(@man)
+      @man.stub(:update_attributes)
+      put :update, {:manager=>@man, :id=>123}
+      #@man.stub!(:field)
+      
+      #Manager.stub_chain(:where, :first).and_return(@man)
+      response.code.should eq("200")
+      
+    end
+    
+    it "When manager updating the DeadLine it should be entered to manager DB" do
+      
+      session[:manager]=true
+      session[:id]=123
+      @man=mock(:manager_id => 123, :name => "Aksman", :password =>"123", :deadline=> "2012-10-17 15:24:00", :group=> 1, :created_at=> "2012-07-10 18:03:34", :updated_at=> "2012-07-17 16:52:48")
+      Manager.stub(:find).and_return(@man)
+      @man.stub(:update_attributes).and_return(true)
+      put :update, {:manager=>@man, :id=>123}
+      #@man.stub!(:field)
+      
+      #Manager.stub_chain(:where, :first).and_return(@man)
+      response.code.should eq("200")
+      
+    end
+  end
+end
