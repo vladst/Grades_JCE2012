@@ -78,8 +78,9 @@ class ManagersController < ApplicationController
 
     respond_to do |format|
       if @manager.update_attributes(params[:manager])
-        format.html { redirect_to @manager, notice: 'Manager was successfully updated.' }
-        format.json { head :ok }
+        flash[:notice]= 'Manager was successfully updated.'
+        redirect_to '/managers/options'
+        return
       else
         format.html { render action: "edit" }
         format.json { render json: @manager.errors, status: :unprocessable_entity }
@@ -100,11 +101,8 @@ class ManagersController < ApplicationController
     end
   end
   
-  def update_deadline
-    @deadline.update_attributes!(:deadline => params[:manager][:deadline])
-  end
-  
   def options
     @manager=Manager.where(:manager_id => session[:id]).first
+    
   end
 end
