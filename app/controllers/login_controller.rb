@@ -10,6 +10,7 @@ class LoginController < ApplicationController
     unless teacherFromDB.blank?
       session[:group]=teacherFromDB.group
       session[:manager]=false
+      session[:name]=teacherFromDB.name
       redirect_to "/teachers/#{id}/choose_classes"
       return
     end
@@ -17,6 +18,7 @@ class LoginController < ApplicationController
     unless managerFromDB.blank?
       session[:group]=managerFromDB.group
       session[:manager]=true
+      session[:name]=managerFromDB.name
       redirect_to "/managers/options"
       return
     end

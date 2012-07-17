@@ -1,4 +1,3 @@
-%h1 Hello #{@teacher_name}
 %h2 Your deadline is #{@deadline}
 %h3 Choose class you want to edit grades
 

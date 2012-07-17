@@ -5,12 +5,10 @@
     %th Class Name
     %th
     %th
-    %th
 
   - @gclasses.each do |gclass|
     %tr
-      %td= gclass.gclass
-      %td= link_to 'Show', gclass
+      %td= link_to gclass.gclass, gclass
       %td= link_to 'Edit', edit_gclass_path(gclass)
       %td= link_to 'Destroy', gclass, :confirm => 'Are you sure?', :method => :delete
 

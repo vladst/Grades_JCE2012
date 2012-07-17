@@ -6,12 +6,14 @@ class StudentsController < ApplicationController
   def require_login
     if !session[:manager]
       flash[:notice] = "You haven't permission to this action, please authorize as manager"
-      redirect_to "/"
+      redirect_to root_path
       return
     end
   end
   def index
-    if params[:subject].nil? && params[:gclass].nil? && session[:manager]
+    if !params[:student_id].nil?
+      redirect_to "/students/#{params[:student_id]}"
+    elsif params[:subject].nil? && params[:gclass].nil? && session[:manager]
       @students = Student.all 
     elsif  params[:gclass].nil? && session[:manager]
       @students = Student.where(:subject => params[:subject])
@@ -29,7 +31,11 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
-    @student = Student.find(params[:id])
+    @report=Student.where(:student_id=>params[:id])
+    if @report.nil? || @report.empty?
+      flash[:notice]="Student with id #{params[:id]} not found"
+      redirect_to '/managers/options'
+    end
   end
 
   # GET /students/new
@@ -85,27 +91,28 @@ class StudentsController < ApplicationController
   end
   
   #################################################################################
-  def report
-    flash[:notice]=params[:student_id]
-    
-  end
   
   def update_individual
     if session[:manager].nil?
       flash[:notice] = "You haven't permission to this action, please authorize as manager/teacher"
-      redirect_to "/"
+      redirect_to root_path
       return
     end
     submitted = !params[:submitted].nil?
     gclass = params[:students].values.first[:gclass]
     subject = params[:students].values.first[:subject]
-    tea= Teacher.where(:teacher_id => session[:id]).where(:gclass => gclass).where(:subject=>subject).first.update_attributes!(:submitted=>!params[:submitted].nil?, :date_of_submission=>Date.current)
+    tea= Teacher.where(:teacher_id => session[:id]).where(:gclass => gclass).where(:subject=>subject).first.update_attributes!(:submitted=>!params[:submitted].nil?, :date_of_submission=>Date.current) unless session[:manager]
     @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }
     if @students.empty?
-      flash[:notice] = "OK -UPDATED"
-      redirect_to  '/teachers/choose_classes' #students_path :gclass=>gclass, :subject=>subject
+      flash[:notice] = "OK - UPDATED"
+      if !session[:manager]
+        redirect_to '/teachers/choose_classes'
+        return
+      end
+      redirect_to teachers_path
+      return
     else
-      flash[:notice] = "NOT UPDATED"
+      flash[:warning] = "NOT UPDATED"
       redirect_to teachers_path
     end
   end

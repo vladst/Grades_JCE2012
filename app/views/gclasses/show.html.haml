@@ -4,6 +4,19 @@
   %b Gclass:
   = @gclass.gclass
 
+%table
+  %thead
+    %tr
+      %td
+      -@subjects.each do |subj|
+        %td= subj.subject
+  %tbody
+    -@students.group(:name).each do |studname|
+      %tr
+      %td= link_to studname.name, "/students/#{studname.student_id}"
+      -@students.where(:name=>studname.name).each do |grade|
+        %td= grade.grade
+
 = link_to 'Edit', edit_gclass_path(@gclass)
 \|
 = link_to 'Back', gclasses_path

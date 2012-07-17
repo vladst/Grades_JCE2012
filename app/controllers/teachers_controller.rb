@@ -11,8 +11,7 @@ class TeachersController < ApplicationController
     end
   end
   def index
-    group=session[:group]
-    @teachers = Teacher.where(:group => group)
+    @teachers = Teacher.where(:group => session[:group])
   end
 
   # GET /teachers/1

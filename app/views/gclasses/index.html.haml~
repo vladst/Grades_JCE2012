@@ -9,11 +9,10 @@
 
   - @gclasses.each do |gclass|
     %tr
-      %td= gclass.gclass
-      %td= link_to 'Show', gclass
+      %td= link_to gclass.gclass, gclass
       %td= link_to 'Edit', edit_gclass_path(gclass)
       %td= link_to 'Destroy', gclass, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Gclass', new_gclass_path
+= link_to 'New Class', new_gclass_path

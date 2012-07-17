@@ -8,7 +8,8 @@
 
   %body
     %h1.title Grades submission system
-    =link_to "Logout", :login => logout
+    =if !session[:manager].nil?
+      %h1 Hello #{session[:name]} =link_to "Logout", '/login/logout'
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]

@@ -4,10 +4,6 @@
   %tr
     %th Teacher ID
     %th Name
-    %th Subject
-    %th Class
-    %th Password
-    %th Group
     %th 
     %th
     %th
@@ -16,13 +12,8 @@
     %tr
       %td= teacher.teacher_id
       %td= teacher.name
-      %td= teacher.subject
-      %td= teacher.gclass
-      %td= teacher.password
-      %td= teacher.group
-      %td= link_to 'Show', teacher
-      %td= link_to 'Edit', edit_teacher_path(teacher)
-      %td= link_to 'Destroy', teacher, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to "#{teacher.subject} #{teacher.gclass}", "/students?gclass=#{teacher.gclass}&subject=#{teacher.subject}"
+      %td= link_to 'Unclass this teacher', teacher, :confirm => 'Are you sure?', :method => :delete
       %td= link_to 'Add Class', "teacher/#{teacher.teacher_id}/add_class"
 
 %br

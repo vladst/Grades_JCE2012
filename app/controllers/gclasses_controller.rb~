@@ -19,6 +19,8 @@ class GclassesController < ApplicationController
   # GET /gclasses/1.json
   def show
     @gclass = Gclass.find(params[:id])
+    @students=Student.select("subject, name, grade, student_id").where(:gclass=>@gclass.gclass)
+    @subjects=@students.group(:subject)
   end
 
   # GET /gclasses/new
@@ -69,10 +71,6 @@ class GclassesController < ApplicationController
   def destroy
     @gclass = Gclass.find(params[:id])
     @gclass.destroy
-
-    respond_to do |format|
-      format.html { redirect_to gclasses_url }
-      format.json { head :ok }
-    end
+    redirect_to gclasses_url
   end
 end

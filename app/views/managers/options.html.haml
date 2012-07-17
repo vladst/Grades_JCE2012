@@ -1,17 +1,22 @@
-%label{:for => 'extension_name'} Grade report by student ID: <span class="hint"></span>
+%h2 Manager's home page
 
 %br
-=form_tag :grade_path, :method => "get" do
-  .fieldset
-    
-    =label_tag "Enter Student ID"
-    =number_field_tag :student_id
+=form_tag '/students/', :method => "get" do
+  =label_tag "Enter Student ID"
+  =number_field_tag :student_id
   .actions
     =submit_tag "Show Diplom"
 
 %br
-=link_to "Add a Teacher", new_teacher_path, html_options = {} 
+=link_to("List of Teachers", :teachers, html_options = {})
+%br
+=link_to("List of Classes", :gclasses, html_options = {})
+%br
+=link_to("List of Subjects", :subjects, html_options = {})
+%br
 
+%br
+=link_to "Add a Teacher", new_teacher_path, html_options = {} 
 %br
 =link_to("Add a Class", new_gclass_path, html_options = {})
 %br
@@ -19,14 +24,6 @@
 %br
 =link_to("Add a Student", new_student_path, html_options = {})
 %br
-%br
-=link_to("List of Classes", :gclasses, html_options = {})
-%br
-=link_to("List of Subjects", :subjects, html_options = {})
-%br
-=link_to("List of Teachers", :teachers, html_options = {})
-%br
-
 = form_for @manager do |f|
   -if @manager.errors.any?
     #error_explanation
@@ -36,18 +33,14 @@
           %li= msg
 
   .field
-    = f.label "Manager ID"
     = f.hidden_field :manager_id
-    = f.number_field :manager_id, :disabled=>"disabled"
   .field
-    = f.label :name
     = f.hidden_field :name
-    = f.text_field :name, :disabled=>"disabled"
   .field
     = f.hidden_field :password 
   .field
-    = f.label :deadline
-    = f.datetime_select :deadline
+    = f.label "Set deadline for all your classes"
+    = f.date_select :deadline
   .field
     = f.hidden_field :group
 

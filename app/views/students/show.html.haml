@@ -1,24 +1,17 @@
-%p#notice= notice
+Student ID: #{@report.first.student_id}
+%br
+Student name: #{@report.first.name}
+%br
+Class: #{@report.first.gclass}
 
-%p
-  %b Student:
-  = @student.student_id
-%p
-  %b Name:
-  = @student.name
-%p
-  %b Subject:
-  = @student.subject
-%p
-  %b Gclass:
-  = @student.gclass
-%p
-  %b Grade:
-  = @student.grade
-%p
-  %b Note:
-  = @student.note
-
-= link_to 'Edit', edit_student_path(@student)
-\|
-= link_to 'Back', students_path
+%table
+  %tr    
+    %th Subject
+    %th Grade
+    %th Note
+    
+  - @report.each do |row|
+    %tr        
+      %td= row.subject
+      %td= row.grade
+      %td= row.note
