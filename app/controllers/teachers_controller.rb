@@ -74,11 +74,7 @@ class TeachersController < ApplicationController
   def destroy
     @teacher = Teacher.find(params[:id])
     @teacher.destroy
-
-    respond_to do |format|
-      format.html { redirect_to teachers_url }
-      format.json { head :ok }
-    end
+    redirect_to teachers_url
   end
   
   #####################################

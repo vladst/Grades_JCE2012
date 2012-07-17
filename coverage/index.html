@@ -21,21 +21,21 @@
       <img src="./assets/0.4.5/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-07-12T10:29:54-07:00">2012-07-12T10:29:54-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-07-17T10:26:37-07:00">2012-07-17T10:26:37-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     All Files
-    (<span class="red">37.69%</span>)
+    (<span class="red">41.26%</span>)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>19</b> files in total.
-    <b>268</b> relevant lines. 
-    <span class="green"><b>101</b> lines covered</span> and
-    <span class="red"><b>167</b> lines missed </span>
+    <b>269</b> relevant lines. 
+    <span class="green"><b>111</b> lines covered</span> and
+    <span class="red"><b>158</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -88,11 +88,11 @@
       
       <tr>
         <td><a href="#a9991d5908135192f890f80311d89ae40d7bf761" class="src_link" title="./app/controllers/students_controller.rb">./app/controllers/students_controller.rb</a></td>
-        <td class="red">18.64 %</td>
-        <td>108</td>
-        <td>59</td>
-        <td>11</td>
-        <td>48</td>
+        <td class="red">19.35 %</td>
+        <td>112</td>
+        <td>62</td>
+        <td>12</td>
+        <td>50</td>
       </tr>
       
       <tr>
@@ -106,11 +106,11 @@
       
       <tr>
         <td><a href="#95ebbf6b4720e9cd85fb56ea3c8303596084959c" class="src_link" title="./app/controllers/teachers_controller.rb">./app/controllers/teachers_controller.rb</a></td>
-        <td class="red">38.89 %</td>
-        <td>104</td>
-        <td>54</td>
-        <td>21</td>
-        <td>33</td>
+        <td class="red">57.69 %</td>
+        <td>100</td>
+        <td>52</td>
+        <td>30</td>
+        <td>22</td>
       </tr>
       
       <tr>
@@ -229,14 +229,14 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     Controllers
-    (<span class="red">34.77%</span>)
+    (<span class="red">38.52%</span>)
   </h2>
   <a name="Controllers"></a>
   <div>
     <b>7</b> files in total.
-    <b>256</b> relevant lines. 
-    <span class="green"><b>89</b> lines covered</span> and
-    <span class="red"><b>167</b> lines missed </span>
+    <b>257</b> relevant lines. 
+    <span class="green"><b>99</b> lines covered</span> and
+    <span class="red"><b>158</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -289,11 +289,11 @@
       
       <tr>
         <td><a href="#a9991d5908135192f890f80311d89ae40d7bf761" class="src_link" title="./app/controllers/students_controller.rb">./app/controllers/students_controller.rb</a></td>
-        <td class="red">18.64 %</td>
-        <td>108</td>
-        <td>59</td>
-        <td>11</td>
-        <td>48</td>
+        <td class="red">19.35 %</td>
+        <td>112</td>
+        <td>62</td>
+        <td>12</td>
+        <td>50</td>
       </tr>
       
       <tr>
@@ -307,11 +307,11 @@
       
       <tr>
         <td><a href="#95ebbf6b4720e9cd85fb56ea3c8303596084959c" class="src_link" title="./app/controllers/teachers_controller.rb">./app/controllers/teachers_controller.rb</a></td>
-        <td class="red">38.89 %</td>
-        <td>104</td>
-        <td>54</td>
-        <td>21</td>
-        <td>33</td>
+        <td class="red">57.69 %</td>
+        <td>100</td>
+        <td>52</td>
+        <td>30</td>
+        <td>22</td>
       </tr>
       
     </tbody>
@@ -3554,7 +3554,7 @@
     <tr>
       <td colspan="3">
         <h3>./app/controllers/students_controller.rb</h3>
-        <h4><span class="red">18.64 %</span> covered</h4>
+        <h4><span class="red">19.35 %</span> covered</h4>
       </td>
     </tr>
     <tr>
@@ -4697,25 +4697,12 @@
     </tr>
   
     
-    <tr class="never" >
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>88</pre>
       </td>
       <td>
-        <pre>  </pre>
-      </td>
-      <td class="hits">
-        
-      </td>
-    </tr>
-  
-    
-    <tr class="hit" data-hits="1">
-      <td class="line_number">
-        <pre>89</pre>
-      </td>
-      <td>
-        <pre>  def update_individual</pre>
+        <pre>  def report</pre>
       </td>
       <td class="hits">
         1
@@ -4725,10 +4712,23 @@
     
     <tr class="miss" data-hits="0">
       <td class="line_number">
+        <pre>89</pre>
+      </td>
+      <td>
+        <pre>    flash[:notice]=params[:student_id]</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
         <pre>90</pre>
       </td>
       <td>
-        <pre>    if session[:manager].nil?</pre>
+        <pre>    @report=Student.where(:student_id =&gt; params[:student_id])</pre>
       </td>
       <td class="hits">
         0
@@ -4736,217 +4736,9 @@
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="never" >
       <td class="line_number">
         <pre>91</pre>
-      </td>
-      <td>
-        <pre>      flash[:notice] = &quot;You haven't permission to this action, please authorize as manager/teacher&quot;</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>92</pre>
-      </td>
-      <td>
-        <pre>      redirect_to &quot;/&quot;</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>93</pre>
-      </td>
-      <td>
-        <pre>      return</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="never" >
-      <td class="line_number">
-        <pre>94</pre>
-      </td>
-      <td>
-        <pre>    end</pre>
-      </td>
-      <td class="hits">
-        
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>95</pre>
-      </td>
-      <td>
-        <pre>    submitted = !params[:submitted].nil?</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>96</pre>
-      </td>
-      <td>
-        <pre>    gclass = params[:students].values.first[:gclass]</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>97</pre>
-      </td>
-      <td>
-        <pre>    subject = params[:students].values.first[:subject]</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>98</pre>
-      </td>
-      <td>
-        <pre>    tea= Teacher.where(:teacher_id =&gt; session[:id]).where(:gclass =&gt; gclass).where(:subject=&gt;subject).first.update_attributes!(:submitted=&gt;!params[:submitted].nil?, :date_of_submission=&gt;Date.current)</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>99</pre>
-      </td>
-      <td>
-        <pre>    @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>100</pre>
-      </td>
-      <td>
-        <pre>    if @students.empty?</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>101</pre>
-      </td>
-      <td>
-        <pre>      flash[:notice] = &quot;OK -UPDATED&quot;</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>102</pre>
-      </td>
-      <td>
-        <pre>      redirect_to  '/teachers/choose_classes' #students_path :gclass=&gt;gclass, :subject=&gt;subject</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="never" >
-      <td class="line_number">
-        <pre>103</pre>
-      </td>
-      <td>
-        <pre>    else</pre>
-      </td>
-      <td class="hits">
-        
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>104</pre>
-      </td>
-      <td>
-        <pre>      flash[:notice] = &quot;NOT UPDATED&quot;</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>105</pre>
-      </td>
-      <td>
-        <pre>      redirect_to teachers_path</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="never" >
-      <td class="line_number">
-        <pre>106</pre>
-      </td>
-      <td>
-        <pre>    end</pre>
-      </td>
-      <td class="hits">
-        
-      </td>
-    </tr>
-  
-    
-    <tr class="never" >
-      <td class="line_number">
-        <pre>107</pre>
       </td>
       <td>
         <pre>  end</pre>
@@ -4959,7 +4751,267 @@
     
     <tr class="never" >
       <td class="line_number">
+        <pre>92</pre>
+      </td>
+      <td>
+        <pre>  </pre>
+      </td>
+      <td class="hits">
+        
+      </td>
+    </tr>
+  
+    
+    <tr class="hit" data-hits="1">
+      <td class="line_number">
+        <pre>93</pre>
+      </td>
+      <td>
+        <pre>  def update_individual</pre>
+      </td>
+      <td class="hits">
+        1
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>94</pre>
+      </td>
+      <td>
+        <pre>    if session[:manager].nil?</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>95</pre>
+      </td>
+      <td>
+        <pre>      flash[:notice] = &quot;You haven't permission to this action, please authorize as manager/teacher&quot;</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>96</pre>
+      </td>
+      <td>
+        <pre>      redirect_to &quot;/&quot;</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>97</pre>
+      </td>
+      <td>
+        <pre>      return</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="never" >
+      <td class="line_number">
+        <pre>98</pre>
+      </td>
+      <td>
+        <pre>    end</pre>
+      </td>
+      <td class="hits">
+        
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>99</pre>
+      </td>
+      <td>
+        <pre>    submitted = !params[:submitted].nil?</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>100</pre>
+      </td>
+      <td>
+        <pre>    gclass = params[:students].values.first[:gclass]</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>101</pre>
+      </td>
+      <td>
+        <pre>    subject = params[:students].values.first[:subject]</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>102</pre>
+      </td>
+      <td>
+        <pre>    tea= Teacher.where(:teacher_id =&gt; session[:id]).where(:gclass =&gt; gclass).where(:subject=&gt;subject).first.update_attributes!(:submitted=&gt;!params[:submitted].nil?, :date_of_submission=&gt;Date.current)</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>103</pre>
+      </td>
+      <td>
+        <pre>    @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>104</pre>
+      </td>
+      <td>
+        <pre>    if @students.empty?</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>105</pre>
+      </td>
+      <td>
+        <pre>      flash[:notice] = &quot;OK -UPDATED&quot;</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>106</pre>
+      </td>
+      <td>
+        <pre>      redirect_to  '/teachers/choose_classes' #students_path :gclass=&gt;gclass, :subject=&gt;subject</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="never" >
+      <td class="line_number">
+        <pre>107</pre>
+      </td>
+      <td>
+        <pre>    else</pre>
+      </td>
+      <td class="hits">
+        
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
         <pre>108</pre>
+      </td>
+      <td>
+        <pre>      flash[:notice] = &quot;NOT UPDATED&quot;</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="miss" data-hits="0">
+      <td class="line_number">
+        <pre>109</pre>
+      </td>
+      <td>
+        <pre>      redirect_to teachers_path</pre>
+      </td>
+      <td class="hits">
+        0
+      </td>
+    </tr>
+  
+    
+    <tr class="never" >
+      <td class="line_number">
+        <pre>110</pre>
+      </td>
+      <td>
+        <pre>    end</pre>
+      </td>
+      <td class="hits">
+        
+      </td>
+    </tr>
+  
+    
+    <tr class="never" >
+      <td class="line_number">
+        <pre>111</pre>
+      </td>
+      <td>
+        <pre>  end</pre>
+      </td>
+      <td class="hits">
+        
+      </td>
+    </tr>
+  
+    
+    <tr class="never" >
+      <td class="line_number">
+        <pre>112</pre>
       </td>
       <td>
         <pre>end</pre>
@@ -5884,7 +5936,7 @@
     <tr>
       <td colspan="3">
         <h3>./app/controllers/teachers_controller.rb</h3>
-        <h4><span class="red">38.89 %</span> covered</h4>
+        <h4><span class="red">57.69 %</span> covered</h4>
       </td>
     </tr>
     <tr>
@@ -5974,7 +6026,7 @@
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="3">
       <td class="line_number">
         <pre>7</pre>
       </td>
@@ -5982,12 +6034,12 @@
         <pre>    if !session[:manager]</pre>
       </td>
       <td class="hits">
-        0
+        3
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>8</pre>
       </td>
@@ -5995,12 +6047,12 @@
         <pre>      flash[:notice] = &quot;You haven't permission to this action, please authorize as manager&quot;</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>9</pre>
       </td>
@@ -6008,7 +6060,7 @@
         <pre>      redirect_to root_path</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
@@ -6065,7 +6117,7 @@
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>14</pre>
       </td>
@@ -6073,12 +6125,12 @@
         <pre>    group=session[:group]</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
         <pre>15</pre>
       </td>
@@ -6086,7 +6138,7 @@
         <pre>    @teachers = Teacher.where(:group =&gt; group)</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
@@ -6884,74 +6936,22 @@
     </tr>
   
     
-    <tr class="never" >
+    <tr class="miss" data-hits="0">
       <td class="line_number">
         <pre>77</pre>
       </td>
       <td>
-        <pre></pre>
+        <pre>    redirect_to teachers_url</pre>
       </td>
       <td class="hits">
-        
+        0
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="never" >
       <td class="line_number">
         <pre>78</pre>
-      </td>
-      <td>
-        <pre>    respond_to do |format|</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>79</pre>
-      </td>
-      <td>
-        <pre>      format.html { redirect_to teachers_url }</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="miss" data-hits="0">
-      <td class="line_number">
-        <pre>80</pre>
-      </td>
-      <td>
-        <pre>      format.json { head :ok }</pre>
-      </td>
-      <td class="hits">
-        0
-      </td>
-    </tr>
-  
-    
-    <tr class="never" >
-      <td class="line_number">
-        <pre>81</pre>
-      </td>
-      <td>
-        <pre>    end</pre>
-      </td>
-      <td class="hits">
-        
-      </td>
-    </tr>
-  
-    
-    <tr class="never" >
-      <td class="line_number">
-        <pre>82</pre>
       </td>
       <td>
         <pre>  end</pre>
@@ -6964,7 +6964,7 @@
     
     <tr class="never" >
       <td class="line_number">
-        <pre>83</pre>
+        <pre>79</pre>
       </td>
       <td>
         <pre>  </pre>
@@ -6977,7 +6977,7 @@
     
     <tr class="never" >
       <td class="line_number">
-        <pre>84</pre>
+        <pre>80</pre>
       </td>
       <td>
         <pre>  #####################################</pre>
@@ -6990,7 +6990,7 @@
     
     <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>85</pre>
+        <pre>81</pre>
       </td>
       <td>
         <pre>  def choose_classes</pre>
@@ -7003,7 +7003,7 @@
     
     <tr class="hit" data-hits="2">
       <td class="line_number">
-        <pre>86</pre>
+        <pre>82</pre>
       </td>
       <td>
         <pre>    if session[:manager].nil?</pre>
@@ -7016,7 +7016,7 @@
     
     <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>87</pre>
+        <pre>83</pre>
       </td>
       <td>
         <pre>      flash[:notice] = &quot;You haven't permission to this action, please authorize as teacher/manager&quot;</pre>
@@ -7029,7 +7029,7 @@
     
     <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>88</pre>
+        <pre>84</pre>
       </td>
       <td>
         <pre>      redirect_to root_path</pre>
@@ -7042,7 +7042,7 @@
     
     <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>89</pre>
+        <pre>85</pre>
       </td>
       <td>
         <pre>      return</pre>
@@ -7055,7 +7055,7 @@
     
     <tr class="never" >
       <td class="line_number">
-        <pre>90</pre>
+        <pre>86</pre>
       </td>
       <td>
         <pre>    end  </pre>
@@ -7068,7 +7068,7 @@
     
     <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>91</pre>
+        <pre>87</pre>
       </td>
       <td>
         <pre>    teacherID = params[:id].nil? || params[:id].empty?? session[:id] : params[:id]</pre>
@@ -7081,7 +7081,7 @@
     
     <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>92</pre>
+        <pre>88</pre>
       </td>
       <td>
         <pre>    @teacher_name = Teacher.select('name').where(:teacher_id =&gt; teacherID).first.name</pre>
@@ -7094,7 +7094,7 @@
     
     <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>93</pre>
+        <pre>89</pre>
       </td>
       <td>
         <pre>    @possible_classes_submitted = Teacher.select('gclass, subject, date_of_submission').where(:teacher_id =&gt; teacherID).where(:submitted =&gt; true)</pre>
@@ -7107,7 +7107,7 @@
     
     <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>94</pre>
+        <pre>90</pre>
       </td>
       <td>
         <pre>    @possible_classes_not_submitted = Teacher.select('gclass, subject').where(:teacher_id =&gt; teacherID).where(:submitted =&gt; false)</pre>
@@ -7120,7 +7120,7 @@
     
     <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>95</pre>
+        <pre>91</pre>
       </td>
       <td>
         <pre>    @deadline = Manager.select(:deadline).where(:group =&gt; session[:group]).first.deadline</pre>
@@ -7133,7 +7133,7 @@
     
     <tr class="never" >
       <td class="line_number">
-        <pre>96</pre>
+        <pre>92</pre>
       </td>
       <td>
         <pre>  end</pre>
@@ -7146,7 +7146,7 @@
     
     <tr class="never" >
       <td class="line_number">
-        <pre>97</pre>
+        <pre>93</pre>
       </td>
       <td>
         <pre>  </pre>
@@ -7159,7 +7159,7 @@
     
     <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>98</pre>
+        <pre>94</pre>
       </td>
       <td>
         <pre>  def add_class</pre>
@@ -7170,61 +7170,61 @@
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>99</pre>
+        <pre>95</pre>
       </td>
       <td>
         <pre>    teach = Teacher.where(:teacher_id =&gt; params[:id]).first</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>100</pre>
+        <pre>96</pre>
       </td>
       <td>
         <pre>    @teacher = Teacher.new(:teacher_id =&gt; teach.teacher_id, :group =&gt; session[:group], :name=&gt; teach.name, :password=&gt;teach.password, :submitted=&gt;0)</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>101</pre>
+        <pre>97</pre>
       </td>
       <td>
         <pre>    @possible_subjects = Subject.all.map {|elem| elem.subject }</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
-    <tr class="miss" data-hits="0">
+    <tr class="hit" data-hits="1">
       <td class="line_number">
-        <pre>102</pre>
+        <pre>98</pre>
       </td>
       <td>
         <pre>    @possible_classes = Gclass.all.map {|elem| elem.gclass}</pre>
       </td>
       <td class="hits">
-        0
+        1
       </td>
     </tr>
   
     
     <tr class="never" >
       <td class="line_number">
-        <pre>103</pre>
+        <pre>99</pre>
       </td>
       <td>
         <pre>  end</pre>
@@ -7237,7 +7237,7 @@
     
     <tr class="never" >
       <td class="line_number">
-        <pre>104</pre>
+        <pre>100</pre>
       </td>
       <td>
         <pre>end</pre>
