@@ -1,0 +1,6 @@
+git clone https://github.com/vladst/Grades_JCE2012.git
+cd Grades_JCE2012
+bundle install
+rake db:migrate
+rake db:data:load
+rails s
