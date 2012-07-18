@@ -1,17 +1,19 @@
-Student ID: #{@report.first.student_id}
-%br
-Student name: #{@report.first.name}
-%br
-Class: #{@report.first.gclass}
+.page-header
+  %h1=t '.title', :default => "Grades table of #{@report.first.name}"
 
-%table
-  %tr    
-    %th Subject
-    %th Grade
-    %th Note
-    
-  - @report.each do |row|
-    %tr        
-      %td= row.subject
-      %td= row.grade
-      %td= row.note
+%h2 Student ID: #{@report.first.student_id}
+%br
+%h2 Class: #{@report.first.gclass}
+
+%table.table.table-striped
+  %thead
+    %tr    
+      %th Subject
+      %th Grade
+      %th Note
+  %tbody    
+    - @report.each do |row|
+      %tr        
+        %td= row.subject
+        %td= row.grade
+        %td= row.note

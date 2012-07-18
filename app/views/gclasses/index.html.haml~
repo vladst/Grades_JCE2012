@@ -16,4 +16,4 @@
 
 %br
 
-= link_to 'New Class', new_gclass_path, :class => 'btn btn-mini btn-primary'
+= link_to 'New Class', new_gclass_path, :class => 'btn'
