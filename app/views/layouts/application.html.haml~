@@ -8,16 +8,37 @@
 
   %body
     %h1.title Grades submission system
-    =if !session[:manager].nil??
-      %h1 Hello #{session[:name]} 
-      =link_to "Logout", '/login/logout'
-    =if session[:manager]
-      %br
-      =link_to "Manager home page", '/managers/options'
-    #main
-      - if flash[:notice]
-        #notice.message= flash[:notice]
-      - elsif flash[:warning]
-        #warning.message= flash[:warning]
+    %div.navbar.navbar-fixed-top
+      %div.navbar-inner
+        %div.container
+          %a.btn.btn-navbar(data-toggle="collapse" data-target=".nav-collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.brand GSC-2012-JCE
+          %div.nav-collapse
+            %ul.nav
+              %li=link_to("Teachers", :teachers, html_options = {})
+              %li=link_to("Classes", :gclasses, html_options = {})
+              %li=link_to("Subjects", :subjects, html_options = {})            
 
-      = yield
+
+#main
+ 
+  - if flash[:notice]
+    #notice.message= flash[:notice]
+  - elsif flash[:warning]
+    #warning.message= flash[:warning]
+  .container
+    .row
+      .span9
+        -if !session[:manager].nil?
+          %h1 Hello #{session[:name]} 
+          =link_to "Logout", '/login/logout'
+        -if session[:manager]
+          %br
+          =link_to "Manager home page", '/managers/options'
+        = yield
+      .span3
+        
+

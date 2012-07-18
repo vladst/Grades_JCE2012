@@ -1,17 +1,19 @@
-%h1 Listing teachers
+- model_class = Teacher
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize
 
-%table
-  %tr
-    %th Teacher ID
-    %th Name
-    %th 
-    %th
-    %th
+%table.table.table-striped
+  %thead
+    %tr
+      %th Teacher ID
+      %th= model_class.human_attribute_name(:name)
+      %th Subject & Class
+      %th=t '.actions', :default => t("helpers.actions")      
 
   - @teachers.each do |teacher|
     %tr
-      %td= teacher.teacher_id
-      %td= teacher.name
+      %td= link_to teacher.teacher_id, "/teachers/#{teacher.teacher_id}/choose_classes"
+      %td= link_to teacher.name, "/teachers/#{teacher.teacher_id}/choose_classes" 
       %td= link_to "#{teacher.subject} #{teacher.gclass}", "/students?gclass=#{teacher.gclass}&subject=#{teacher.subject}"
       %td= link_to 'Unclass this teacher', teacher, :confirm => 'Are you sure?', :method => :delete
       %td= link_to 'Add Class', "teacher/#{teacher.teacher_id}/add_class"
