@@ -7,17 +7,6 @@
   .actions
     =submit_tag "Show Diplom"
 
-
-=link_to("List of Teachers", :teachers, html_options = {})
-=link_to("List of Classes", :gclasses, html_options = {})
-=link_to("List of Subjects", :subjects, html_options = {})
-
-
-=link_to "Add a Teacher", new_teacher_path, html_options = {} 
-=link_to("Add a Class", new_gclass_path, html_options = {})
-=link_to("Add a Subject", new_subject_path, html_options = {})
-=link_to("Add a Student", new_student_path, html_options = {})
-
 = form_for @manager do |f|
   -if @manager.errors.any?
     #error_explanation
