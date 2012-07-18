@@ -14,13 +14,13 @@ class StudentsController < ApplicationController
     if !params[:student_id].nil?
       redirect_to "/students/#{params[:student_id]}"
     elsif params[:subject].nil? && params[:gclass].nil? && session[:manager]
-      @students = Student.all 
+      @students = Student.all(:order => :student_id) 
     elsif  params[:gclass].nil? && session[:manager]
-      @students = Student.where(:subject => params[:subject])
+      @students = Student.where(:subject => params[:subject]).order(:student_id)
     elsif params[:subject].nil? && session[:manager]
-      @students = Student.where(:gclass => params[:gclass])
+      @students = Student.where(:gclass => params[:gclass]).order(:student_id)
     elsif !session[:manager].nil?
-      @students = Student.where(:subject => params[:subject], :gclass=>params[:gclass])
+      @students = Student.where(:subject => params[:subject], :gclass=>params[:gclass]).order(:student_id)
     else 
       flash[:notice] = "You haven't permission to this action, please authorize as manager"
       redirect_to "/"
@@ -54,12 +54,17 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     gcl = params[:student][:gclass]
-    subjects = Teacher.select(:subject).where(:gclass=> gcl).group(:subject).map {|elem| elem.subject}
-    #@student = Student.new(params[:student])
+    subjects = Student.select(:subject).where(:gclass=> gcl).group(:subject).map {|elem| elem.subject}
+    subjects = Teacher.select(:subject).where(:gclass=>gcl).group(:subject).map {|elem| elem.subject} if subjects.empty?
+    if subjects.empty?
+      redirect_to teachers_path, notice: "Student wasn't created! Please bind at least one teacher to class #{gcl} before."
+      return
+    end
     subjects.each  do |subj|
       Student.create(:name => params[:student][:name], :student_id =>params[:student][:student_id] ,:subject =>subj,:gclass=>gcl)
     end
-    redirect_to students_path, notice: "Student was successfully created."
+
+    redirect_to '/managers/options', notice: "Student was successfully created."
   end
 
   # PUT /students/1
