@@ -1,27 +1,37 @@
-%h2 Your deadline is #{@deadline}
 %h3 Choose class you want to edit grades
 
-%table
+%table.table.table-striped
   %thead
     %tr
       %th Classes which you not submit grades
+      -if session[:manager]
+        %th Actions
+      %th 
   %tbody
   -@possible_classes_not_submitted.each do |cl|
     %tr
     %td
       =link_to "#{cl.subject} at class #{cl.gclass}", students_path(:subject=>cl.subject, :gclass=>cl.gclass)
-
-%table
+    -if session[:manager]
+      %td= link_to 'Remove binding to class', Teacher.find(cl.id), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'
+    %td
   %thead
     %tr
       %th Classes which you alredy submit grades
+      -if session[:manager]
+        %th
       %th Date of submission
   %tbody
   -@possible_classes_submitted.each do |cl|
     %tr
     %td
       =link_to "#{cl.subject} at class #{cl.gclass}", students_path(:subject=>cl.subject, :gclass=>cl.gclass)
+    -if session[:manager]
+      %td= link_to 'Remove binding to class', Teacher.find(cl.id), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'
     %td
       =cl.date_of_submission
- 
-    
+
+-if session[:manager]
+  = link_to 'Add Class to teacher', "teacher/#{@teacherID}/add_class", :class => 'btn btn-mini btn-primary'
+-else
+  %h2 Your deadline is #{@deadline.to_date}    

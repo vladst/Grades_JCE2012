@@ -1,19 +1,19 @@
 %h1 Listing subjects
 
-%table
-  %tr
-    %th Subject
-    %th
-    %th
-    %th
+%table.table.table-striped
+  %thead
+    %tr
+      %th Subject
+      %th
 
+  %tbody
   - @subjects.each do |subject|
     %tr
-      %td= subject.subject
-      %td= link_to 'Show', subject
-      %td= link_to 'Edit', edit_subject_path(subject)
-      %td= link_to 'Destroy', subject, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to subject.subject, subject
+      %td
+        -#= link_to 'Edit', edit_subject_path(subject)
+        = link_to 'Destroy', subject, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'
 
 %br
 
-= link_to 'New Subject', new_subject_path
+= link_to 'New Subject', new_subject_path, :class => 'btn btn-mini btn-primary'

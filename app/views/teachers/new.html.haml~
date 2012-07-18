@@ -28,7 +28,9 @@
     = f.hidden_field :group
   .field
     = f.hidden_field :submitted
+  .field
+    = f.hidden_field :deadline
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :class => 'btn btn-primary'
 
 = link_to t('.cancel', :default => t("helpers.links.cancel")), teachers_path, :class => 'btn'

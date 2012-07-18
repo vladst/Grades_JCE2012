@@ -23,4 +23,4 @@
   %td= f.number_field :grade, :style=>"width:50px"
 .field
   -#= f.label :note
-  %td= f.text_field :note
+  %td= f.text_field :note, :style=>"width:200px"

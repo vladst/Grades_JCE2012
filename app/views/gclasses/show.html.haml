@@ -1,15 +1,13 @@
-%p#notice= notice
+- model_class = Gclass
+.page-header
+  %h1=t '.title', :default => "Table of grades for class #{@gclass.gclass}"
 
-%p
-  %b Gclass:
-  = @gclass.gclass
-
-%table
+%table.table.table-striped
   %thead
     %tr
       %td
       -@subjects.each do |subj|
-        %td= subj.subject
+        %td= link_to "#{subj.subject}", "/students?gclass=#{@gclass.gclass}&subject=#{subj.subject}"
   %tbody
     -@students.group(:name).each do |studname|
       %tr
@@ -17,6 +15,4 @@
       -@students.where(:name=>studname.name).each do |grade|
         %td= grade.grade
 
-= link_to 'Edit', edit_gclass_path(@gclass)
-\|
 = link_to 'Back', gclasses_path

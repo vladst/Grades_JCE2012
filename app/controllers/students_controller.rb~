@@ -14,13 +14,13 @@ class StudentsController < ApplicationController
     if !params[:student_id].nil?
       redirect_to "/students/#{params[:student_id]}"
     elsif params[:subject].nil? && params[:gclass].nil? && session[:manager]
-      @students = Student.all(:order => :student_id) 
+      @students = Student.all(:order => :name) 
     elsif  params[:gclass].nil? && session[:manager]
-      @students = Student.where(:subject => params[:subject]).order(:student_id)
+      @students = Student.where(:subject => params[:subject]).order(:name)
     elsif params[:subject].nil? && session[:manager]
-      @students = Student.where(:gclass => params[:gclass]).order(:student_id)
+      @students = Student.where(:gclass => params[:gclass]).order(:name)
     elsif !session[:manager].nil?
-      @students = Student.where(:subject => params[:subject], :gclass=>params[:gclass]).order(:student_id)
+      @students = Student.where(:subject => params[:subject], :gclass=>params[:gclass]).order(:name)
     else 
       flash[:notice] = "You haven't permission to this action, please authorize as manager"
       redirect_to "/"
@@ -106,19 +106,14 @@ class StudentsController < ApplicationController
     submitted = !params[:submitted].nil?
     gclass = params[:students].values.first[:gclass]
     subject = params[:students].values.first[:subject]
-    tea= Teacher.where(:teacher_id => session[:id]).where(:gclass => gclass).where(:subject=>subject).first.update_attributes!(:submitted=>!params[:submitted].nil?, :date_of_submission=>Date.current) unless session[:manager]
+    tea=Teacher.where(:gclass => gclass).where(:subject=>subject).first
+    tea.update_attributes!(:submitted=>!params[:submitted].nil?, :date_of_submission=>Date.current)
     @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }
     if @students.empty?
       flash[:notice] = "OK - UPDATED"
-      if !session[:manager]
-        redirect_to '/teachers/choose_classes'
-        return
-      end
-      redirect_to teachers_path
-      return
     else
       flash[:warning] = "NOT UPDATED"
-      redirect_to teachers_path
     end
+      redirect_to "/teachers/#{tea.teacher_id}/choose_classes"
   end
 end

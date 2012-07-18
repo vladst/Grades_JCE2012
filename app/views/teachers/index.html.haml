@@ -7,15 +7,12 @@
     %tr
       %th Teacher ID
       %th= model_class.human_attribute_name(:name)
-      %th Subject & Class
       %th=t '.actions', :default => t("helpers.actions")      
 
   - @teachers.each do |teacher|
     %tr
       %td= link_to teacher.teacher_id, "/teachers/#{teacher.teacher_id}/choose_classes"
       %td= link_to teacher.name, "/teachers/#{teacher.teacher_id}/choose_classes" 
-      %td= link_to "#{teacher.subject} #{teacher.gclass}", "/students?gclass=#{teacher.gclass}&subject=#{teacher.subject}"
-      %td= link_to 'Remove binding', teacher, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'
       %td= link_to 'Add Class', "teacher/#{teacher.teacher_id}/add_class", :class => 'btn btn-mini btn-primary'
 
 %br

@@ -1,5 +1,5 @@
 %h1 Listing students
-%table
+%table.table.table-striped
   %thead
     %tr
       %th Student ID
@@ -8,17 +8,17 @@
       %th Class
       %th Grade
       %th note
-  = form_tag :update_individual, :method=> :put do
-    
-    - @students.each do |student|
-      =fields_for "students[]", student do |f|
-        %tbody
-          %tr
-          = render 'fields', :f => f
-    %br
-    =check_box_tag id="submitted", value=1, checked=false
-    I'm finished to set grades
-    %br
-    =submit_tag "Submit" , :id=>"submit"
+      = form_tag :update_individual, :method=> :put do
+          
+        - @students.each do |student|
+          =fields_for "students[]", student do |f|
+            %tbody
+              %tr
+              = render 'fields', :f => f
+        %br
+        =check_box_tag id="submitted", value=1, checked=false
+        I finished to set grades
+        %br
+        =submit_tag "Submit" , :id=>"submit"
 
 -#= link_to 'New Student', new_student_path

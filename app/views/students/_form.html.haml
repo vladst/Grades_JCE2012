@@ -5,7 +5,6 @@
       %ul
         - @student.errors.full_messages.each do |msg|
           %li= msg
-
   .field
     = f.label :student_id
     = f.number_field :student_id

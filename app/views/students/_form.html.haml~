@@ -5,10 +5,10 @@
       %ul
         - @student.errors.full_messages.each do |msg|
           %li= msg
-
+TESTTESTTEST
   .field
-    = f.hidden_field :student_id
-    = f.hidden_field :student_id
+    = f.label :student_id
+    = f.number_field :student_id
   .field
     = f.label :name
     = f.text_field :name

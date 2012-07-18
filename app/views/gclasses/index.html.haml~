@@ -1,18 +1,19 @@
-%h1 Listing gclasses
+.page-header
+  %h1=t '.title', :default => "List of classes that you manage"
 
-%table
-  %tr
-    %th Class Name
-    %th
-    %th
-    %th
+%table.table.table-striped
+  %thead
+    %tr
+      %th Class Name
+      %th Actions
 
   - @gclasses.each do |gclass|
     %tr
       %td= link_to gclass.gclass, gclass
-      %td= link_to 'Edit', edit_gclass_path(gclass)
-      %td= link_to 'Destroy', gclass, :confirm => 'Are you sure?', :method => :delete
+      %td
+        =link_to 'Change name', edit_gclass_path(gclass), :class => 'btn btn-mini btn-primary'
+        =link_to 'Destroy', gclass, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'
 
 %br
 
-= link_to 'New Class', new_gclass_path
+= link_to 'New Class', new_gclass_path, :class => 'btn btn-mini btn-primary'

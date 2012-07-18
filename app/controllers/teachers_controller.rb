@@ -11,7 +11,7 @@ class TeachersController < ApplicationController
     end
   end
   def index
-    @teachers = Teacher.where(:group => session[:group]).order(:teacher_id)
+    @teachers = Teacher.where(:group => session[:group]).group(:teacher_id)
   end
 
   # GET /teachers/1
@@ -83,10 +83,10 @@ class TeachersController < ApplicationController
       redirect_to root_path
       return
     end  
-    teacherID = params[:id].nil? || params[:id].empty?? session[:id] : params[:id]
-    @teacher_name = Teacher.select('name').where(:teacher_id => teacherID).first.name
-    @possible_classes_submitted = Teacher.select('gclass, subject, date_of_submission').where(:teacher_id => teacherID).where(:submitted => true)
-    @possible_classes_not_submitted = Teacher.select('gclass, subject').where(:teacher_id => teacherID).where(:submitted => false)
+    @teacherID = params[:id].nil? || params[:id].empty?? session[:id] : params[:id]
+    @teacher_name = Teacher.select('name').where(:teacher_id => @teacherID).first.name
+    @possible_classes_submitted = Teacher.select('gclass, subject, date_of_submission, id').where(:teacher_id => @teacherID).where(:submitted => true)
+    @possible_classes_not_submitted = Teacher.select('gclass, subject, id').where(:teacher_id => @teacherID).where(:submitted => false)
     @deadline = Manager.select(:deadline).where(:group => session[:group]).first.deadline
   end
   
