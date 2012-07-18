@@ -1,4 +1,6 @@
-%h1 Add teacher's class
+- model_class = Teacher
+.page-header
+  %h1=t '.title', :default => "Add class to teacher"
 = form_for @teacher do |f|
   -if @teacher.errors.any?
     #error_explanation
@@ -25,6 +27,6 @@
   .field
     = f.hidden_field :submitted
   .actions
-    = f.submit 'Add'
+    = f.submit 'Add', :class => 'btn btn-primary'
 
-= link_to 'Back', teachers_path
+= link_to t('.cancel', :default => t("helpers.links.cancel")), teachers_path, :class => 'btn'
