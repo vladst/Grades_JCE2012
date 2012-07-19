@@ -2,11 +2,11 @@
 %table.table.table-striped
   %thead
     %tr
-      %th Student ID
       %th Name
+      %th Student ID
       %th Subject
-      %th Class
-      %th Grade
+      -#%th Class
+      -#%th Grade
       %th note
       = form_tag :update_individual, :method=> :put do
           

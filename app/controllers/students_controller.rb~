@@ -13,17 +13,19 @@ class StudentsController < ApplicationController
   def index
     if !params[:student_id].nil?
       redirect_to "/students/#{params[:student_id]}"
-    elsif params[:subject].nil? && params[:gclass].nil? && session[:manager]
-      @students = Student.all(:order => :name) 
-    elsif  params[:gclass].nil? && session[:manager]
-      @students = Student.where(:subject => params[:subject]).order(:name)
-    elsif params[:subject].nil? && session[:manager]
-      @students = Student.where(:gclass => params[:gclass]).order(:name)
-    elsif !session[:manager].nil?
+    end
+    #elsif params[:subject].nil? && params[:gclass].nil? && session[:manager]
+    #  @students = Student.all(:order => :name) 
+    #elsif  params[:gclass].nil? && session[:manager]
+    #  @students = Student.where(:subject => params[:subject]).order(:name)
+    #elsif params[:subject].nil? && session[:manager]
+    #  @students = Student.where(:gclass => params[:gclass]).order(:name)
+    #elsif !session[:manager].nil?
+    if !(session[:manager].nil? || params[:subject].nil? || params[:gclass].nil?) 
       @students = Student.where(:subject => params[:subject], :gclass=>params[:gclass]).order(:name)
     else 
-      flash[:notice] = "You haven't permission to this action, please authorize as manager"
-      redirect_to "/"
+      flash[:notice] = "You haven't permission to this action"
+      redirect_to root_path
       return
     end
   end
