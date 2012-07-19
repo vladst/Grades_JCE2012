@@ -109,13 +109,13 @@ class StudentsController < ApplicationController
     gclass = params[:students].values.first[:gclass]
     subject = params[:students].values.first[:subject]
     tea=Teacher.where(:gclass => gclass).where(:subject=>subject).first
-    tea.update_attributes!(:submitted=>!params[:submitted].nil?, :date_of_submission=>Date.current)
+    tea.update_attributes!(:submitted=>submitted, :date_of_submission=>Date.current)
     @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }
     if @students.empty?
       flash[:notice] = "OK - UPDATED"
     else
       flash[:warning] = "NOT UPDATED"
     end
-      redirect_to "/teachers/#{tea.teacher_id}/choose_classes"
+    redirect_to "/teachers/#{tea.teacher_id}/choose_classes"
   end
 end
