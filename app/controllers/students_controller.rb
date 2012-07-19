@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
   def index
     if !params[:student_id].nil?
       redirect_to "/students/#{params[:student_id]}"
+      return
     end
     #elsif params[:subject].nil? && params[:gclass].nil? && session[:manager]
     #  @students = Student.all(:order => :name) 
