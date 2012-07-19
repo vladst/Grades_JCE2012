@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
    
   def require_login
     if !session[:manager]
-      flash[:notice] = "You haven't permission to this action, please authorize as manager"
+      flash[:warning] = "You haven't permission to this action, please authorize as manager"
       redirect_to root_path
       return
     end
@@ -24,7 +24,7 @@ class StudentsController < ApplicationController
     if !(session[:manager].nil? || params[:subject].nil? || params[:gclass].nil?) 
       @students = Student.where(:subject => params[:subject], :gclass=>params[:gclass]).order(:name)
     else 
-      flash[:notice] = "You haven't permission to this action."
+      flash[:warning] = "You haven't permission to this action."
       redirect_to root_path
       return
     end
@@ -35,7 +35,7 @@ class StudentsController < ApplicationController
   def show
     @report=Student.where(:student_id=>params[:id])
     if @report.nil? || @report.empty?
-      flash[:notice]="Student with id #{params[:id]} not found"
+      flash[:warning]="Student with id #{params[:id]} not found"
       redirect_to '/managers/options'
     end
   end
@@ -101,7 +101,7 @@ class StudentsController < ApplicationController
   
   def update_individual
     if session[:manager].nil?
-      flash[:notice] = "You haven't permission to this action, please authorize as manager/teacher"
+      flash[:warning] = "You haven't permission to this action, please authorize as manager/teacher"
       redirect_to root_path
       return
     end

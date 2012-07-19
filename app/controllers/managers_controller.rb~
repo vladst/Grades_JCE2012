@@ -4,7 +4,7 @@ class ManagersController < ApplicationController
    
   def require_login
     unless session[:manager]
-      flash[:notice] = "You haven't permission to this action, please authorize as manager"
+      flash[:warning] = "You haven't permission to this action, please authorize as manager"
       redirect_to "/"
       return
     end
@@ -28,7 +28,6 @@ class ManagersController < ApplicationController
   # GET /managers/new
   # GET /managers/new.json
   def new
-
     @manager = Manager.new
   end
 

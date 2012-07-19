@@ -37,12 +37,14 @@
                     %li=link_to "Add a Student", new_student_path, html_options = {}, :id=>"add_student"
             %ul.nav-right
               -if !session[:manager].nil?
-                You logged in as                 %strong #{session[:name]} 
+                You logged in as 
+                %strong #{session[:name]} 
                 =link_to "Logout", '/login/logout', :id=>'logout'
 #main
  
   - if flash[:notice]
-    #notice.message= flash[:notice]
+    .alert.alert-info
+      #notice.message= flash[:notice]
   - elsif flash[:warning]
     #warning.message= flash[:warning]
   .container

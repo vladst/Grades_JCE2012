@@ -22,7 +22,7 @@ class LoginController < ApplicationController
       redirect_to "/managers/options"
       return
     end
-    flash[:notice] = "Pair of login and password not found"
+    flash[:warning] = "Pair of login and password not found"
     redirect_to root_path
     return
   end
