@@ -3,7 +3,8 @@
 %table.table.table-striped
   %thead
     %tr
-      %th Classes which you not submit grades
+      %th
+        %h4 Classes which yet naven't grades
       -if session[:manager]
         %th Actions
       %th 
@@ -17,7 +18,8 @@
     %td
   %thead
     %tr
-      %th Classes which you alredy submit grades
+      %th
+        %h4 Classes which have grades
       -if session[:manager]
         %th
       %th Date of submission

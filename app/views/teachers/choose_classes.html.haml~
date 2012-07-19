@@ -3,7 +3,8 @@
 %table.table.table-striped
   %thead
     %tr
-      %th Classes which you not submit grades
+      %th
+        %h4 Classes which naven't grades
       -if session[:manager]
         %th Actions
       %th 
@@ -17,7 +18,8 @@
     %td
   %thead
     %tr
-      %th Classes which you alredy submit grades
+      %th
+        %h4 Classes which have grades
       -if session[:manager]
         %th
       %th Date of submission
@@ -32,6 +34,6 @@
       =cl.date_of_submission
 
 -if session[:manager]
-  = link_to 'Add Class to teacher', "teacher/#{@teacherID}/add_class", :class => 'btn btn-mini btn-primary'
+  = link_to 'Add Class to teacher', "/teacher/#{@teacherID}/add_class", :class => 'btn btn-mini btn-primary'
 -else
   %h2 Your deadline is #{@deadline.to_date}    

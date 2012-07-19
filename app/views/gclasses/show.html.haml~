@@ -15,5 +15,4 @@
       -@students.where(:name=>studname.name).each do |grade|
         %td= grade.grade
 
-\|
 = link_to 'Back', gclasses_path

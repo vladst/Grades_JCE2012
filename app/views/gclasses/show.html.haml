@@ -5,7 +5,7 @@
 %table.table.table-striped
   %thead
     %tr
-      %td
+      %td Pupil name
       -@subjects.each do |subj|
         %td= link_to "#{subj.subject}", "/students?gclass=#{@gclass.gclass}&subject=#{subj.subject}"
   %tbody
