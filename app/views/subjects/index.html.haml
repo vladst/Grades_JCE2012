@@ -8,8 +8,9 @@
 
   %tbody
   - @subjects.each do |subject|
-    %tr
-      %td= link_to subject.subject, subject
+    %tr 
+      -#%td= link_to subject.subject, subject
+      %td=subject.subject
       %td
         -#= link_to 'Edit', edit_subject_path(subject)
         = link_to 'Destroy', subject, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'

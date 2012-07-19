@@ -12,7 +12,7 @@ class GclassesController < ApplicationController
   # GET /gclasses
   # GET /gclasses.json
   def index
-    @gclasses = Gclass.all
+    @gclasses = Gclass.all :order => :gclass
   end
 
   # GET /gclasses/1
@@ -41,7 +41,7 @@ class GclassesController < ApplicationController
 
     respond_to do |format|
       if @gclass.save
-        format.html { redirect_to @gclass, notice: 'Gclass was successfully created.' }
+        format.html { redirect_to @gclass, notice: 'Class was successfully created.' }
         format.json { render json: @gclass, status: :created, location: @gclass }
       else
         format.html { render action: "new" }
@@ -53,24 +53,20 @@ class GclassesController < ApplicationController
   # PUT /gclasses/1
   # PUT /gclasses/1.json
   def update
-    @gclass = Gclass.find(params[:id])
-
-    respond_to do |format|
-      if @gclass.update_attributes(params[:gclass])
-        format.html { redirect_to @gclass, notice: 'Gclass was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @gclass.errors, status: :unprocessable_entity }
-      end
-    end
+    @gclass = Gclass.find(params[:id]) 
+    Student.where(:gclass=>@gclass.gclass).update_all(:gclass=>params[:gclass][:gclass])
+    Teacher.where(:gclass=>@gclass.gclass).update_all(:gclass=>params[:gclass][:gclass])
+    @gclass.update_attributes(params[:gclass])
+    redirect_to @gclass, notice: "Class was successfully updated to #{params[:gclass][:gclass]}."
   end
 
   # DELETE /gclasses/1
   # DELETE /gclasses/1.json
   def destroy
     @gclass = Gclass.find(params[:id])
+    Student.where(:gclass=>@gclass.gclass).destroy_all
+    Teacher.where(:gclass=>@gclass.gclass).destroy_all
     @gclass.destroy
-    redirect_to gclasses_url
+    redirect_to gclasses_url, notice: "Class destroyed, all students removed from the DataBase!"
   end
 end
