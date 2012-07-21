@@ -43,7 +43,7 @@ class TeachersController < ApplicationController
     end
     respond_to do |format|
       if @teacher.save
-        format.html { redirect_to teachers_path, notice: 'Success' }
+        format.html { redirect_to "/teachers/#{@teacher.teacher_id}/choose_classes", notice: 'Success.' }
         format.json { render json: @teacher, status: :created, location: @teacher }
       else
         format.html { render action: "new" }
@@ -67,13 +67,22 @@ class TeachersController < ApplicationController
       end
     end
   end
-
+  
+  def unbind
+    @teach=Teacher.where(:teacher_id=>params[:id]).where(:subject=>params[:subject]).where(:gclass=>params[:class]).first
+    Student.where(:gclass=>@teach.gclass).where(:subject=>@teach.subject).destroy_all
+    @teach.destroy
+    redirect_to "/teachers/#{@teach.teacher_id}/choose_classes", notice: "Teacher successfully unbounded from class #{@teach.gclass} #{@teach.subject}"
+  end
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
-    @teacher = Teacher.find(params[:id])
-    @teacher.destroy
-    redirect_to teachers_url
+    teachers = Teacher.where(:teacher_id=>Teacher.find(params[:id]).teacher_id)
+    teachers.each do |teacher|
+      Student.where(:gclass=>teacher.gclass).where(:subject=>teacher.subject).destroy_all
+      teacher.destroy
+    end
+    redirect_to teachers_url, notice: "Teacher destroyed successfully #{params.inspect}!"
   end
   
   #####################################
@@ -84,8 +93,7 @@ class TeachersController < ApplicationController
       return
     end  
     @teacherID = params[:id].nil? || params[:id].empty?? session[:id] : params[:id]
-    @teacher_name = Teacher.select('name').where(:teacher_id => @teacherID).first.name
-    @possible_classes_submitted = Teacher.select('gclass, subject, date_of_submission, id').where(:teacher_id => @teacherID).where(:submitted => true)
+    @possible_classes_submitted = Teacher.where(:teacher_id => @teacherID).where(:submitted => true)
     @possible_classes_not_submitted = Teacher.select('gclass, subject, id').where(:teacher_id => @teacherID).where(:submitted => false)
     @deadline = Manager.select(:deadline).where(:group => session[:group]).first.deadline
   end

@@ -8,10 +8,11 @@
     =f.number_field :student_id, :disabled => 'disabled', :style=>"width:100px"
     =f.hidden_field :student_id
 .field
-  -#%td
-    -#= f.label :subject
-    -#=f.text_field :subject, :disabled => 'disabled', :style=>"width:100px"
-  =f.hidden_field :subject
+   
+    -if params[:subject].nil?
+      %td
+        =f.text_field :subject, :disabled => 'disabled', :style=>"width:100px"
+    =f.hidden_field :subject
   
 .field
   -#%td

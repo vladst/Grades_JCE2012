@@ -1,4 +1,5 @@
-%h1 Listing subjects
+.page-header
+  %h1=t '.title', :default => "List of subjects"
 
 %table.table.table-striped
   %thead
@@ -12,7 +13,7 @@
       -#%td= link_to subject.subject, subject
       %td=subject.subject
       %td
-        -#= link_to 'Edit', edit_subject_path(subject)
+        = link_to 'Edit name', edit_subject_path(subject), :class=>'btn btn-mini btn-primary'
         = link_to 'Destroy', subject, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'
 
 %br

@@ -1,6 +1,6 @@
 - model_class = Teacher
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
+  %h1=t '.title', :default => "Teacher's that you manage"
 
 %table.table.table-striped
   %thead
@@ -13,8 +13,9 @@
     %tr
       %td= link_to teacher.teacher_id, "/teachers/#{teacher.teacher_id}/choose_classes"
       %td= link_to teacher.name, "/teachers/#{teacher.teacher_id}/choose_classes" 
-      %td= link_to "#{teacher.subject} #{teacher.gclass}", "/students?gclass=#{teacher.gclass}&subject=#{teacher.subject}"
-      %td= link_to 'Add Class', "teacher/#{teacher.teacher_id}/add_class", :class => 'btn btn-mini btn-primary'
+      %td
+        =link_to 'Add Class', "teacher/#{teacher.teacher_id}/add_class", :class => 'btn btn-mini btn-primary'
+        =link_to 'Destroy', teacher, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'
 
 %br
 

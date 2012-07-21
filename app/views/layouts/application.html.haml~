@@ -35,7 +35,8 @@
                     %li=link_to "Add a Class", new_gclass_path, html_options = {}, :id=>"add_class"
                     %li=link_to "Add a Subject", new_subject_path, html_options = {}, :id=>"add_subject"
                     %li=link_to "Add a Student", new_student_path, html_options = {}, :id=>"add_student"
-            %ul.nav-right
+            
+            %ul.pull-right
               -if !session[:manager].nil?
                 You logged in as 
                 %strong #{session[:name]} 
@@ -46,11 +47,12 @@
     .alert.alert-info
       #notice.message= flash[:notice]
   - elsif flash[:warning]
-    #warning.message= flash[:warning]
+    .alert.alert-error
+      #warning.message= flash[:warning]
   .container
-    .row
-      .span9
-        = yield
-      .span3
+    .span9
+      %br
+      = yield
+    .span3
         
 
