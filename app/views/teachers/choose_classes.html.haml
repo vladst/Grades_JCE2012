@@ -38,4 +38,4 @@
 -if session[:manager]
   = link_to 'Add Class to teacher', "/teacher/#{@teacherID}/add_class", :class => 'btn btn-mini btn-primary'
 -else
-  %h2 Your deadline is #{@deadline.to_date}    
+  %h2 Your deadline is #{@deadline}    

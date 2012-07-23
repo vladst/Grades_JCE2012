@@ -10,24 +10,16 @@ class StudentsController < ApplicationController
       return
     end
   end
+
   def index
-    if !params[:student_id].nil?
-      redirect_to "/students/#{params[:student_id]}"
-      return 
-    #elsif params[:subject].nil? && params[:gclass].nil? && session[:manager]
-    #  @students = Student.all(:order => :name) 
-    #elsif  params[:gclass].nil? && session[:manager]
-    #  @students = Student.where(:subject => params[:subject]).order(:name)
-    #elsif params[:subject].nil? && session[:manager]
-    #  @students = Student.where(:gclass => params[:gclass]).order(:name)
-    elsif session[:manager]
-      @students = Student.all(:order=>:name)
-    elsif !(session[:manager].nil? || params[:subject].nil? || params[:gclass].nil?) 
-      @students = Student.where(:subject => params[:subject], :gclass=>params[:gclass]).order(:name)
-    else 
+    if session[:manager].nil? || (!session[:manager]&& (params[:gclass].blank? || params[:subject].blank?) )
       flash[:warning] = "You haven't permission to this action."
       redirect_to root_path
-      return
+    elsif !params[:student_id].nil?
+      redirect_to "/students/#{params[:student_id]}"
+      return 
+    else session[:manager]
+      @students = Student.getStudentsList params[:subject], params[:gclass]
     end
   end
 
@@ -35,7 +27,7 @@ class StudentsController < ApplicationController
   # GET /students/1.json
   def show
     @report=Student.where(:student_id=>params[:id])
-    if @report.nil? || @report.empty?
+    if @report.blank?
       flash[:warning]="Student with id #{params[:id]} not found"
       redirect_to '/managers/options'
     end
@@ -56,18 +48,11 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
-    gcl = params[:student][:gclass]
-    subjects = Student.select(:subject).where(:gclass=> gcl).group(:subject).map {|elem| elem.subject}
-    subjects = Teacher.select(:subject).where(:gclass=>gcl).group(:subject).map {|elem| elem.subject} if subjects.empty?
-    if subjects.empty?
-      redirect_to teachers_path, notice: "Student wasn't created! Please bind at least one teacher to class #{gcl} before."
-      return
-    end
-    subjects.each  do |subj|
-      Student.create(:name => params[:student][:name], :student_id =>params[:student][:student_id] ,:subject =>subj,:gclass=>gcl)
-    end
+    
+    answer = Student.createNew(params[:student])
+    redirect_to teachers_path, notice: "Student wasn't created! Please bind at least one teacher to class #{gcl} before." unless answer
 
-    redirect_to '/managers/options', notice: "Student was successfully created."
+    redirect_to "/gclasses/#{Gclass.where(:gclass=>params[:student][:gclass]).first.id}", notice: "Student was successfully created."
   end
 
   # PUT /students/1
@@ -113,7 +98,7 @@ class StudentsController < ApplicationController
     tea.update_attributes!(:submitted=>submitted, :date_of_submission=>Date.current)
     @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }
     if @students.empty?
-      flash[:notice] = "OK - UPDATED"
+      flash[:notice] = "UPDATED"
     else
       flash[:warning] = "NOT UPDATED"
     end

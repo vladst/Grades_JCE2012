@@ -1,11 +1,15 @@
-%h1 Listing students
+- model_class = Student
+.page-header
+  %h1=t '.title', :default => "Listing students for class #{params[:gclass]} #{params[:subject]}"
 %table.table.table-striped
   %thead
     %tr
       %th Name
       %th Student ID
-      -#%th Subject
-      -#%th Class
+      -if params[:subject].nil?
+        %th Subject
+      -if params[:gclass].nil?
+        %th Class
       %th Grade
       %th note
       = form_tag :update_individual, :method=> :put do
@@ -16,8 +20,9 @@
               %tr
               = render 'fields', :f => f
         %br
-        =check_box_tag id="submitted", value=1, checked=false
-        I finished to set grades
+        -if !(params[:subject].nil? || params[:gclass].nil?)
+          =check_box_tag id="submitted", value=1, checked=false
+          I finished to set grades
         %br
         =submit_tag "Submit" , :id=>"submit"
 

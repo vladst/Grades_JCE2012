@@ -7,17 +7,17 @@
   %td
     =f.number_field :student_id, :disabled => 'disabled', :style=>"width:100px"
     =f.hidden_field :student_id
-.field
-   
-    -if params[:subject].nil?
-      %td
-        =f.text_field :subject, :disabled => 'disabled', :style=>"width:100px"
-    =f.hidden_field :subject
+.field 
+  -if params[:subject].nil?
+    %td
+      =f.text_field :subject, :disabled => 'disabled', :style=>"width:100px"
+  =f.hidden_field :subject
   
 .field
-  -#%td
-    -#= f.label :gclass
-    -#=f.text_field :gclass, :disabled => 'disabled',:style=>"width:60px"
+  -if params[:class].nil?
+    %td
+      -#= f.label :gclass
+      =f.text_field :gclass, :disabled => 'disabled',:style=>"width:60px"
   =f.hidden_field :gclass
 .field
   -#= f.label :grade

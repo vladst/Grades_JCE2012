@@ -30,7 +30,8 @@
     %td
       =link_to "#{cl.subject} at class #{cl.gclass}", students_path(:subject=>cl.subject, :gclass=>cl.gclass)
       -if session[:manager]
-        %td=link_to 'Remove binding to class', "unbind?class=#{cl.gclass}&subject=#{cl.subject}", :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+        %td
+          =link_to 'Remove binding to class', "unbind?class=#{cl.gclass}&subject=#{cl.subject}", :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
     %td
       =cl.date_of_submission
 

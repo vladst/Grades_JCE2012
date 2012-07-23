@@ -14,9 +14,10 @@
   =f.hidden_field :subject
   
 .field
-  -#%td
-    -#= f.label :gclass
-    -#=f.text_field :gclass, :disabled => 'disabled',:style=>"width:60px"
+  -if params[:gclass].nil?
+    %td
+      -#= f.label :gclass
+      =f.text_field :gclass, :disabled => 'disabled',:style=>"width:60px"
   =f.hidden_field :gclass
 .field
   -#= f.label :grade

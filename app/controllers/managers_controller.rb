@@ -11,10 +11,6 @@ class ManagersController < ApplicationController
   end
   # GET /managers
   # GET /managers.json
-  def setTime #"" setting time for Teacher submission!
-      
-  end
-  
   def index
     @managers = Manager.all
   end
@@ -85,7 +81,6 @@ class ManagersController < ApplicationController
   end
   
   def options
-    @manager=Manager.where(:manager_id => session[:id]).first
-    
+    @manager=Manager.where(:manager_id => session[:id]).first 
   end
 end

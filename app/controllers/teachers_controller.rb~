@@ -1,17 +1,18 @@
 class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
-  before_filter :require_login, :except => [:choose_classes]
+  before_filter :require_manager_login, :except => [:choose_classes]
    
-  def require_login
+  def require_manager_login
     if !session[:manager]
       flash[:warning] = "You haven't permission to this action, please authorize as manager"
       redirect_to root_path
       return
     end
   end
+  
   def index
-    @teachers = Teacher.where(:group => session[:group]).group(:teacher_id)
+    @teachers = Teacher.get_teachers session[:group]
   end
 
   # GET /teachers/1
@@ -35,21 +36,16 @@ class TeachersController < ApplicationController
 
   # POST /teachers
   # POST /teachers.json
-  def create
-    @teacher = Teacher.new(params[:teacher])
-    students = Student.where(:gclass=>@teacher.gclass)
-    students.each do |student|
-      Student.create(:name => student.name, :student_id =>student.student_id ,:subject =>params[:teacher][:subject],:gclass=>params[:teacher][:gclass])
-    end
-    respond_to do |format|
-      if @teacher.save
-        format.html { redirect_to "/teachers/#{@teacher.teacher_id}", notice: 'Success.' }
-        format.json { render json: @teacher, status: :created, location: @teacher }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
-      end
-    end
+  def create   
+    @teacher = Teacher.create_teacher(params[:teacher])
+    #if @teacher.nil?
+    #  @teacher = Teacher.where(:subject => params[:teacher][:subject]).where(:gclass=>params[:teacher][:gclass]).first
+    #  flash[:warning]= "Not possible to perform this action: Class #{params[:teacher][:gclass]} with subject #{params[:teacher][:subject]} alredy bounded to #{@teacher.name} (ID: #{@teacher.teacher_id})."
+    #  redirect_to teachers_path
+    #else
+      #redirect_to "/teachers/#{@teacher.teacher_id}/choose_classes", notice: 'Success.'
+      redirect_to "/teachers/", notice: "Success.#{@teacher}"
+    #end
   end
 
   # PUT /teachers/1
@@ -69,20 +65,14 @@ class TeachersController < ApplicationController
   end
   
   def unbind
-    @teach=Teacher.where(:teacher_id=>params[:id]).where(:subject=>params[:subject]).where(:gclass=>params[:class]).first
-    Student.where(:gclass=>@teach.gclass).where(:subject=>@teach.subject).destroy_all
-    @teach.destroy
-    redirect_to "/teachers/#{@teach.teacher_id}/choose_classes", notice: "Teacher successfully unbounded from class #{@teach.gclass} #{@teach.subject}"
+    @teach = Teacher.unbind params[:id], params[:subject], params[:class]
+    redirect_to "/teachers/#{@teach.teacher_id}/choose_classes", notice: "Teacher #{@teach.name} successfully unbounded from class #{@teach.gclass} #{@teach.subject}"
   end
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
-    teachers = Teacher.where(:teacher_id=>Teacher.find(params[:id]).teacher_id)
-    teachers.each do |teacher|
-      Student.where(:gclass=>teacher.gclass).where(:subject=>teacher.subject).destroy_all
-      teacher.destroy
-    end
-    redirect_to teachers_url, notice: "Teacher destroyed successfully #{params.inspect}!"
+    Teacher.destroy params[:id]
+    redirect_to teachers_url, notice: "Teacher destroyed successfully!"
   end
   
   #####################################
@@ -91,16 +81,15 @@ class TeachersController < ApplicationController
       flash[:warning] = "You haven't permission to this action, please authorize as teacher/manager"
       redirect_to root_path
       return
-    end  
+    end 
     @teacherID = params[:id].nil? || params[:id].empty?? session[:id] : params[:id]
-    @possible_classes_submitted = Teacher.where(:teacher_id => @teacherID).where(:submitted => true)
-    @possible_classes_not_submitted = Teacher.select('gclass, subject, id').where(:teacher_id => @teacherID).where(:submitted => false)
-    @deadline = Manager.select(:deadline).where(:group => session[:group]).first.deadline
+    @possible_classes_submitted = Teacher.possible_classes @teacherID, true
+    @possible_classes_not_submitted = Teacher.possible_classes @teacherID, false
+    @deadline = Manager.deadline session[:group]
   end
   
   def add_class
-    teach = Teacher.where(:teacher_id => params[:id]).first
-    @teacher = Teacher.new(:teacher_id => teach.teacher_id, :group => session[:group], :name=> teach.name, :password=>teach.password, :submitted=>0)
+    @teacher = Teacher.newTeacherForBinding params[:id], session[:group]
     @possible_subjects = Subject.all.map {|elem| elem.subject }
     @possible_classes = Gclass.all.map {|elem| elem.gclass}
   end
