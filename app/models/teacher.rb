@@ -37,4 +37,14 @@ class Teacher < ActiveRecord::Base
     teach = Teacher.where(:teacher_id => id).first
     @teacher = Teacher.new(:teacher_id => teach.teacher_id, :group => group, :name=> teach.name, :password=>teach.password, :submitted=>0)
   end
+  
+  def self.update_teachers_submission(gclass, subject, submitted)
+    tea=Teacher.where(:gclass => gclass).where(:subject=>subject).first
+    tea.update_attributes!(:submitted=>submitted, :date_of_submission=>Date.current)
+    return tea
+  end
+  
+  def self.getTeacherByClassAndSubject(gclass, subject)
+    Teacher.where(:gclass => gclass).where(:subject=>subject).first
+  end
 end

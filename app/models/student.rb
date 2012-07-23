@@ -20,4 +20,12 @@ class Student < ActiveRecord::Base
     end
     return true
   end
+  
+  def self.update_individual(students)
+    Student.update(students.keys, students.values).reject { |p| p.errors.empty? }
+  end
+  
+  def self.destroy_student(id)
+    Student.where(:student_id=>id).destroy_all
+  end
 end

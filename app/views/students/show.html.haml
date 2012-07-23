@@ -17,3 +17,5 @@
         %td= row.subject
         %td= row.grade
         %td= row.note
+        
+=link_to 'Delete student', "/students/#{@report.first.student_id}", :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'

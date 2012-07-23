@@ -74,13 +74,10 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
-    @student = Student.find(params[:id])
-    @student.destroy
-
-    respond_to do |format|
-      format.html { redirect_to students_url }
-      format.json { head :ok }
-    end
+    
+    gclass = Gclass.findClassIdByStudent params[:id]
+    @stu = Student.destroy_student params[:id]
+    redirect_to "/gclasses/#{gclass}", notice: "Student destroyed."
   end
   
   #################################################################################
@@ -94,14 +91,16 @@ class StudentsController < ApplicationController
     submitted = !params[:submitted].nil?
     gclass = params[:students].values.first[:gclass]
     subject = params[:students].values.first[:subject]
-    tea=Teacher.where(:gclass => gclass).where(:subject=>subject).first
-    tea.update_attributes!(:submitted=>submitted, :date_of_submission=>Date.current)
-    @students = Student.update(params[:students].keys, params[:students].values).reject { |p| p.errors.empty? }
+    
+    tea = Teacher.update_teachers_submission(gclass, subject, submitted)
+    
+    @students = Student.update_individual(params[:students])
     if @students.empty?
       flash[:notice] = "UPDATED"
     else
       flash[:warning] = "NOT UPDATED"
     end
+    
     redirect_to "/teachers/#{tea.teacher_id}/choose_classes"
   end
 end
