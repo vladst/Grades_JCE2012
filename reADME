@@ -5,5 +5,7 @@ rake db:migrate
 rake db:data:load
 rails s
 
+go in the browser http://localhost:3000/
+
 Manager login: 123 pass: 123
 Teachers login: 2345 pass: 2345  or 3456 - 3456 or 4567 - 4567
