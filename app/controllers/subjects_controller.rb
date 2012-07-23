@@ -57,10 +57,7 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1
   # DELETE /subjects/1.json
   def destroy
-    @subject = Subject.find(params[:id])
-    Student.where(:subject=>@subject.subject).destroy_all
-    Teacher.where(:subject=>@subject.subject).destroy_all
-    @subject.destroy
-    redirect_to subjects_url, notice: "Subject #{@subject.subject} destroyed succesfully."
+    @subject = Subject.destroy_subject params[:id]
+    redirect_to subjects_url, notice: "Subject #{@subject.subject} destroyed successfully."
   end
 end
