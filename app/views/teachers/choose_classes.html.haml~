@@ -1,4 +1,4 @@
-%h3 Choose class you want to edit grades
+%h2 Choose class you want to edit grades
 
 %table.table.table-striped
   %thead
@@ -17,6 +17,11 @@
       %td
         =link_to 'Remove binding to class', "unbind?class=#{cl.gclass}&subject=#{cl.subject}", :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
     %td
+      -if !session[:manager]
+        -if @deadline.past?
+          Deadline MISSED before #{-(@deadline-Date.current).to_i} days!
+        -else
+          You have #{(@deadline-Date.current).to_i} days to submit grades
   %thead
     %tr
       %th
@@ -33,9 +38,10 @@
         %td
           =link_to 'Remove binding to class', "unbind?class=#{cl.gclass}&subject=#{cl.subject}", :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
     %td
-      =cl.date_of_submission
+      =cl.date_of_submission 
+      (#{-(cl.date_of_submission-Date.current).to_i} days ago)
 
 -if session[:manager]
   = link_to 'Add Class to teacher', "/teacher/#{@teacherID}/add_class", :class => 'btn btn-mini btn-primary'
 -else
-  %h2 Your deadline is #{@deadline.to_date}    
+  %h2 Your deadline is #{@deadline}    
