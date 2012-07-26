@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe TeachersController do
 	describe 'Teachers options' do
-    # before(:each) do
-    #  @pass = mock('pass')
-    #  @pass.stub!(:password => '1234', :group=> 12)
-    #end
 		it 'Only logged in user can see the page' do
 			session = nil
 			get :choose_classes
@@ -13,11 +9,8 @@ describe TeachersController do
 		end
 		it 'Teacher must see only classes he teach' do
 			session[:manager]=false
-			@name = mock('name')
-			@name.stub!("Reuven")
-			Teacher.stub_chain(:select, :where, :first, :name).and_return(@name)
-			Teacher.stub_chain(:select, :where, :where)
-			Teacher.stub_chain(:select, :where, :where)
+			
+      Teacher.stub(:possible_classes)
 			Manager.stub_chain(:select, :where, :first, :deadline)
 			get :choose_classes
 			#response.should redirect_to "/teachers/123/choose_classes"
@@ -37,14 +30,7 @@ describe TeachersController do
 			get :index
 			response.should redirect_to root_path
 		end
-		it 'Manager should see possible classes for binding to new teacher' do
-			subj=mock('subjMock')
-   		subj.stub!(:subject=>"History")
-   		gclas=mock('gclasMock')
-   		gclas.stub!(:gclass=>"7a")
-   		Subject.stub_chain(:all, :map).and_return(subj)
-		 	Gclass.stub_chain(:all, :map).and_return(gclas)
-		end	
+
    	it 'Manager can add class to teacher' do
    		session[:manager]=true
    		session[:group]=1
@@ -60,7 +46,18 @@ describe TeachersController do
 		 	Gclass.stub_chain(:all, :map).and_return(gclas)
 		 	get :add_class, {:id => 123}
 		 	response.code.should eq("200")
-    	end
+   end
+   it 'Manager can add new teacher' do
+      session[:manager]=true
+      subj=mock('subjMock')
+   		subj.stub!(:subject=>"History")
+   		gclas=mock('gclasMock')
+   		gclas.stub!(:gclass=>"7a")
+      Teacher.stub!(:new)
+      Subject.stub_chain(:all, :map).and_return(subj)
+		 	Gclass.stub_chain(:all, :map).and_return(gclas)
+		 	get :new
+   end
 	end
 end
 

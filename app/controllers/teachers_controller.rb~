@@ -15,12 +15,6 @@ class TeachersController < ApplicationController
     @teachers = Teacher.get_teachers session[:group]
   end
 
-  # GET /teachers/1
-  # GET /teachers/1.json
-  def show
-    @teacher = Teacher.find(params[:id])
-  end
-
   # GET /teachers/new
   # GET /teachers/new.json
   def new
@@ -38,29 +32,24 @@ class TeachersController < ApplicationController
   # POST /teachers.json
   def create   
     @teacher = Teacher.create_teacher(params[:teacher])
-    #if @teacher.nil?
-    #  @teacher = Teacher.where(:subject => params[:teacher][:subject]).where(:gclass=>params[:teacher][:gclass]).first
-    #  flash[:warning]= "Not possible to perform this action: Class #{params[:teacher][:gclass]} with subject #{params[:teacher][:subject]} alredy bounded to #{@teacher.name} (ID: #{@teacher.teacher_id})."
-    #  redirect_to teachers_path
-    #else
-      #redirect_to "/teachers/#{@teacher.teacher_id}/choose_classes", notice: 'Success.'
-      redirect_to "/teachers/", notice: "Success.#{@teacher}"
-    #end
+    if @teacher.nil?
+      @teacher = Teacher.where(:subject => params[:teacher][:subject]).where(:gclass=>params[:teacher][:gclass]).first
+      flash[:warning]= "Not possible to perform this action: Class #{params[:teacher][:gclass]} with subject #{params[:teacher][:subject]} alredy bounded to #{@teacher.name} (ID: #{@teacher.teacher_id})."
+      redirect_to teachers_path
+    else
+      redirect_to "/teachers/#{@teacher.teacher_id}/choose_classes", notice: 'Success.'
+    end
   end
 
   # PUT /teachers/1
   # PUT /teachers/1.json
   def update
     @teacher = Teacher.find(params[:id])
-
-    respond_to do |format|
-      if @teacher.update_attributes(params[:teacher])
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
-      end
+    if @teacher.update_attributes(params[:teacher])
+      redirect_to @teacher, notice: 'Teacher was successfully updated.'
+    else
+      render action: "edit" 
+      format.json { render json: @teacher.errors, status: :unprocessable_entity }
     end
   end
   

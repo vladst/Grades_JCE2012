@@ -15,12 +15,6 @@ class TeachersController < ApplicationController
     @teachers = Teacher.get_teachers session[:group]
   end
 
-  # GET /teachers/1
-  # GET /teachers/1.json
-  def show
-    @teacher = Teacher.find(params[:id])
-  end
-
   # GET /teachers/new
   # GET /teachers/new.json
   def new
@@ -47,22 +41,6 @@ class TeachersController < ApplicationController
     end
   end
 
-  # PUT /teachers/1
-  # PUT /teachers/1.json
-  def update
-    @teacher = Teacher.find(params[:id])
-
-    respond_to do |format|
-      if @teacher.update_attributes(params[:teacher])
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  
   def unbind
     @teach = Teacher.unbind params[:id], params[:subject], params[:class]
     redirect_to "/teachers/#{@teach.teacher_id}/choose_classes", notice: "Teacher #{@teach.name} successfully unbounded from class #{@teach.gclass} #{@teach.subject}"
