@@ -5,7 +5,7 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', "~> 1.3.4"
+gem 'sqlite3'
 gem 'less-rails-bootstrap'
 gem 'haml-rails'
 gem 'jquery-rails'
@@ -24,10 +24,9 @@ group :assets do
   
 end
 group :tests ,:development do
- 
+  gem 'minitest'
   gem 'cucumber-rails'
   gem 'cucumber-rails-training-wheels'
-  gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
 
