@@ -8,6 +8,12 @@ GIT
       railties (>= 3.1)
       therubyracer (= 0.10.1)
 
+GIT
+  remote: https://github.com/rhalff/seed_dump.git
+  revision: f8ef18c8ff866d1ef6c2e22b427051a2dc636481
+  specs:
+    seed_dump (0.3.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -205,6 +211,7 @@ DEPENDENCIES
   rails (= 3.1.0)
   rspec-rails
   sass-rails (~> 3.1.0)
+  seed_dump!
   simplecov
   sqlite3
   therubyracer

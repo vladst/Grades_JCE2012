@@ -1,0 +1,12 @@
+require 'spec_helper'
+
+describe TeachersModel do
+	describe 'Teachers options' do
+    it 'Only logged in user can see the page' do
+			@name = mock('name')
+			@name.stub!("Reuven")
+			Teacher.stub_chain(:select, :where, :first, :name).and_return(@name)
+			Teacher.stub_chain(:select, :where, :where)
+			Teacher.stub_chain(:select, :where, :where)
+	end
+end

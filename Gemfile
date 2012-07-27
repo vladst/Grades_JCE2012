@@ -15,6 +15,8 @@ gem 'yaml_db'  #rake db:data:dump  ->   Dump contents of Rails database to db/da
 #rake db:data:load   ->   Load contents of db/data.yml into the database
 # Gems used only for assets and not required
 # in production environments by default.
+gem 'seed_dump', :git=> 'https://github.com/rhalff/seed_dump.git'
+
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
