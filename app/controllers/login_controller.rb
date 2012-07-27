@@ -23,6 +23,7 @@ class LoginController < ApplicationController
       return
     end
     flash[:warning] = "Pair of login and password not found"
+    session[:manager]=nil
     redirect_to root_path
     return
   end
