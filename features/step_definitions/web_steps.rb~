@@ -41,8 +41,8 @@ When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
 
-Given /^I should see "(.*?)" before "(.*?)"$/ do |arg1, arg2|
-  assert page.body.index(arg1) < page.body.index(arg2)
+Given /^(?:|I )should  see "(.*?)" before "(.*?)"$/ do |e1, e2|
+  assert page.body.index(e1) < page.body.index(e2)
 end
 
 Given /^(?:|I )am on (.+)$/ do |page_name|
