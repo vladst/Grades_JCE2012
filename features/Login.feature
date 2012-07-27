@@ -17,19 +17,10 @@ Scenario: Manager login
   Given I fill in "user" with "123"
   And I fill in "Password" with "123"
   And I press "Login"
+  And I should be on the manager's options page
   Then I should see "You logged in as Aksman"
   And I should see "Manager's home page"
 
-Scenario: Logout from the system
-  Given I fill in "user" with "123"
-  And I fill in "Password" with "123"
-  And I press "Login"
-  Then I should see "You logged in as Aksman"
-  And I should see "Manager's home page"
-  When I follow "Logout"
-  Then I should see "Thank you for using grades submission system"
-  And I should not see "You logged in as Aksman"
-  
 Scenario: Not correct credential was entered
   Given I fill in "user" with "123"
   And I fill in "Password" with "WRONG PASSWORD"
@@ -37,4 +28,12 @@ Scenario: Not correct credential was entered
   Then I should see "Pair of login and password not found"
   And I should not see "You logged in"
   
-
+Scenario: Logout from the system
+  Given I fill in "user" with "123"
+  And I fill in "Password" with "123"
+  And I press "Login"
+  Then I should be on the manager's options page
+  When I follow "Logout"
+  Then I should see "Thank you for using grades submission system"
+  And I should be on the home page
+  And I should not see "You logged in as Aksman"

@@ -15,10 +15,10 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
-    
     when /^teacher's choose classes page$/
       '/teachers/choose_classes'
-    
+    when /^the managers options page$/
+      '/managers/options'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

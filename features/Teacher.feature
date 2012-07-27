@@ -18,6 +18,7 @@ Scenario: I update grades for class
   Then I should see "UPDATED"
   When I follow "History at class 7b"
   Then the "students_19_grade" field should contain "54"
+  And the "students_19_note" field should contain "bad!"
   
 Scenario: I mark class as graduated
   Given I am on teacher's choose classes page

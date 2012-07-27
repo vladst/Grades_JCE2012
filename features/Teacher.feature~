@@ -33,7 +33,7 @@ Scenario: I UNmark class as graduated
   Given I am on teacher's choose classes page
   And I should see "Classes which have grades" before "History at class 8b"
   And I follow "History at class 8b"
-  Given I should see "Listing students for class 7b History"
+  Given I should see "Listing students for class 8b History"
   When I uncheck "submitted"
   And I press "submit"
   Then I should see "UPDATED"
